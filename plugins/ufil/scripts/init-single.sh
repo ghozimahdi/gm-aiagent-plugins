@@ -1321,7 +1321,7 @@ class AuthRemoteDataSource {
     await Future<void>.delayed(const Duration(milliseconds: 800));
     if (request.email == 'demo@example.com' && request.password == 'password') {
       return const LoginResponse(
-        token: 'dummy-token-123',
+        token: 'put your token here',
         user: UserDto(id: '1', name: 'Demo User', email: 'demo@example.com'),
       );
     }
