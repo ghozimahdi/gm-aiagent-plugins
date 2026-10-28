@@ -9,15 +9,6 @@
             "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && bundle exec rubocop --force-exclusion $(git diff --cached --name-only --diff-filter=ACM | grep '\\.rb$' | tr '\\n' ' ') 2>&1 || true"
           }
         ]
-      },
-      {
-        "matcher": "mcp__serena__.*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo 'Auto-approved serena operation'"
-          }
-        ]
       }
     ],
     "PostToolUse": [

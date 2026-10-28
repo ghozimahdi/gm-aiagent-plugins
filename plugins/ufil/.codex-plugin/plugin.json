@@ -1,7 +1,7 @@
 {
   "name": "ufil",
-  "version": "1.0.7",
-  "description": "Flutter Clean Architecture and modularization workflows with Dart and Serena MCP integration.",
+  "version": "1.1.0",
+  "description": "Flutter Clean Architecture and modularization workflows with Dart MCP integration.",
   "author": {
     "name": "Ghozi Mahdi",
     "email": "ghozi.dev@gmail.com",
@@ -26,23 +26,12 @@
       "args": [
         "mcp-server"
       ]
-    },
-    "serena": {
-      "command": "uvx",
-      "args": [
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server",
-        "--project-from-cwd",
-        "--context=codex"
-      ]
     }
   },
   "interface": {
     "displayName": "UFIL",
     "shortDescription": "Flutter architecture workflows for Codex",
-    "longDescription": "Plan, implement, test, and review Flutter applications using UFIL Clean Architecture conventions, reusable skills, and Dart and Serena MCP tools.",
+    "longDescription": "Plan, implement, test, and review Flutter applications using UFIL Clean Architecture conventions, reusable skills, and Dart MCP tools.",
     "developerName": "Ghozi Mahdi",
     "category": "Developer Tools",
     "capabilities": [

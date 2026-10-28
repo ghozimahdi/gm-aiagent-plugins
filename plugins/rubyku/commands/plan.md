@@ -9,13 +9,9 @@ Analyze a GitHub issue/ticket and create a detailed implementation plan BEFORE c
 
 Arguments: $ARGUMENTS (GitHub issue ID, e.g., `123` or `issues/123`)
 
-## Step 0: Initialize Serena + Read docs (MANDATORY)
+## Step 0: Read docs (MANDATORY)
 
-### 0a. Initialize Serena LSP
-
-**ALWAYS** call `mcp__serena__initial_instructions` first, then `mcp__serena__activate_project`. Use Serena tools throughout planning for code exploration and symbol lookup.
-
-### 0b. Read plugin docs
+### 0a. Read plugin docs
 
 Read from `${CLAUDE_PLUGIN_ROOT}/docs/` (resolve via `echo $CLAUDE_PLUGIN_ROOT` first):
 
@@ -29,23 +25,6 @@ Read from `${CLAUDE_PLUGIN_ROOT}/docs/` (resolve via `echo $CLAUDE_PLUGIN_ROOT` 
 Also read relevant project guidelines from `docs/guidelines/` in the working directory.
 
 Do NOT proceed until docs are read.
-
-### Serena Usage During Planning
-
-**ALWAYS prefer Serena tools over Grep/Glob/Read for exploring the codebase:**
-
-- `mcp__serena__find_symbol` — find existing classes, methods, modules
-- `mcp__serena__find_declaration` — go to definition of a symbol
-- `mcp__serena__find_referencing_symbols` — find all usages of a method/class
-- `mcp__serena__find_implementations` — find implementations of a concern/module
-- `mcp__serena__get_symbols_overview` — understand structure of a file (models, controllers, etc.)
-- `mcp__serena__get_diagnostics_for_file` — check existing errors in files
-
-Use these to:
-- Understand existing model associations and concerns
-- Trace controller → model → concern dependencies
-- Check existing routes and namespace structure
-- Identify affected helper files
 
 ## Steps
 

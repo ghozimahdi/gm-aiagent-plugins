@@ -2,19 +2,8 @@
   "mcpServers": {
     "dart-flutter": {
       "command": "dart",
-      "args": ["mcp-server"]
-    },
-    "serena": {
-      "command": "uvx",
       "args": [
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server",
-        "--context",
-        "claude-code",
-        "--project",
-        "."
+        "mcp-server"
       ]
     }
   }

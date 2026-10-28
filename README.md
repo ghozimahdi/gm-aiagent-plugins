@@ -14,7 +14,7 @@ Each plugin comes with opinionated rules, automated tooling, and AI-powered agen
 | Plugin                        | Platform     | Description                                                                                                     |
 | ----------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
 | [**ufil**](plugins/ufil/)     | Flutter/Dart | UFIL (Ultimate Flutter Intelligent Layer) — Clean Architecture + Modularization with Dart MCP & LSP integration |
-| [**rubyku**](plugins/rubyku/) | Ruby/Rails   | Rails 8 development — Rails Way architecture, Hotwire-first frontend, Serena LSP for Ruby code intelligence     |
+| [**rubyku**](plugins/rubyku/) | Ruby/Rails   | Rails 8 development — Rails Way architecture, Hotwire-first frontend                                                   |
 | _Coming soon_                 | React Native | TBD                                                                                                             |
 | _Coming soon_                 | Kotlin       | TBD                                                                                                             |
 | _Coming soon_                 | Express      | TBD                                                                                                             |
@@ -58,7 +58,7 @@ Repository maintainers can run the shared release workflow with
 
 ## Documentation
 
-Plugin-specific docs live next to each plugin. Cross-cutting topics — tools and integrations shared across plugins (Serena MCP, RTK, Dart MCP, hook conventions, etc.) — are documented in the [GitHub Wiki](https://github.com/ghozimahdi/gm-aiagent-plugins/wiki), which is mirrored from the [`wiki/`](wiki/) folder in this repo via [`.github/workflows/sync-wiki.yml`](.github/workflows/sync-wiki.yml) — edit pages there via a regular PR and they'll be pushed to the Wiki on merge to `main`.
+Plugin-specific docs live next to each plugin. Cross-cutting topics — tools and integrations shared across plugins (RTK, Dart MCP, hook conventions, etc.) — are documented in the [GitHub Wiki](https://github.com/ghozimahdi/gm-aiagent-plugins/wiki), which is mirrored from the [`wiki/`](wiki/) folder in this repo via [`.github/workflows/sync-wiki.yml`](.github/workflows/sync-wiki.yml) — edit pages there via a regular PR and they'll be pushed to the Wiki on merge to `main`.
 
 If automated sync ever fails, you can push manually:
 

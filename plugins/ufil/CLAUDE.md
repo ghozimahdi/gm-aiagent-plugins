@@ -6,11 +6,11 @@ Supports both **modular** (multi-package + melos) and **single-module** project 
 ## What's Included
 
 - **3 Agents**: Architect, Implementer, Reviewer
-- **24 shared skills** (`skills/`, shared with Codex): 8 architecture/convention skills (reference — auto-invoked, no frontmatter markers) and 16 workflow skills (action — `disable-model-invocation: true` + `argument-hint` in frontmatter, migrated from `commands/*.md`; see README.md for the full split and migration commits)
+- **23 shared skills** (`skills/`, shared with Codex): 8 architecture/convention skills (reference — auto-invoked, no frontmatter markers) and 15 workflow skills (action — `disable-model-invocation: true` + `argument-hint` in frontmatter, migrated from `commands/*.md`; see README.md for the full split and migration commits)
 - **3 Claude-only commands** (`commands/*.md`, legacy Command format, no Codex equivalent): rtk-activate, rtk-deactivate, rtk-status
 - **Team Config**: `config/team-config.json` — thresholds + max parallel agents. `/ufil:implement` auto-detects ticket scope and switches to team mode (architect → parallel implementers in worktrees) when thresholds are exceeded. Tune without editing skill files.
 - **Hooks**: Auto dart fix + format + analyze before git commit
-- **MCP Servers**: Dart & Flutter MCP Server + Serena LSP (auto-onboards on first `plan`, `implement`, or `implement-batch` run when Dart code is detected; manual refresh via `serena-refresh`)
+- **MCP Servers**: Dart & Flutter MCP Server
 - **Dart LSP**: Code intelligence (go-to-definition, find references, diagnostics)
 - **RTK auto-install**: [rtk-ai/rtk](https://github.com/rtk-ai/rtk) CLI proxy installed and globally registered on first session — cuts Claude Code token usage 60-90% on `git`, `flutter`, `dart`, `melos`, etc.
 - **.claudeignore**: Template for Flutter projects
@@ -69,7 +69,7 @@ claude --plugin-dir /path/to/gm-aiagent-plugins/plugins/ufil
 /ufil:create-bloc home --actions get_transaction,add_transaction --alert
 /ufil:create-bloc property_detail --with-failure --actions get_property_detail,delete_property
 
-# Plan a ticket BEFORE implementing (uses Serena, saves plan markdown)
+# Plan a ticket BEFORE implementing (saves plan markdown)
 /ufil:plan 123
 /ufil:plan issues/456
 
@@ -93,19 +93,4 @@ claude --plugin-dir /path/to/gm-aiagent-plugins/plugins/ufil
 /ufil:rtk-activate
 /ufil:rtk-deactivate
 
-# Force Serena re-onboarding after a large refactor or branch switch
-/ufil:serena-refresh
 ```
-
-## Serena Onboarding Behavior
-
-Serena's project index (symbols, references, memories) is bootstrapped lazily:
-
-- **`init-project`** does NOT run onboarding — the scaffold is freshly generated and Serena would index boilerplate that the user is about to rewrite.
-- **`plan`, `implement`, `implement-batch`** check Serena's onboarding state on every invocation:
-  - Onboarded → proceed.
-  - Not onboarded AND Dart files detected → call `mcp__serena__onboarding` once (transparent to the user; takes <1 min on most projects).
-  - Not onboarded AND no Dart files → skip onboarding, fall back to Glob/Grep/Read, notify the user that it will retry next time.
-- **`serena-refresh`** forces re-onboarding when the index goes stale (large refactor, package restructuring, project-type switch).
-
-The plugin intentionally does NOT ship a pre-built `.serena/` folder — onboarding data is project-specific (symbols, file paths, memories about THIS codebase), so a generic seed would be useless or actively misleading.

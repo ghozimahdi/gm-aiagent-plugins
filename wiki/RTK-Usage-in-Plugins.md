@@ -11,9 +11,6 @@ UFIL's `hooks/hooks.json` adds RTK's installer to the `SessionStart` event:
   "matcher": "",
   "hooks": [
     { "type": "command",
-      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/install-serena.sh && ${CLAUDE_PLUGIN_ROOT}/scripts/serena-hook.sh activate --client=claude-code"
-    },
-    { "type": "command",
       "command": "${CLAUDE_PLUGIN_ROOT}/scripts/install-rtk.sh"
     }
   ]

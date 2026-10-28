@@ -16,20 +16,6 @@ Implement a feature following clean architecture.
 
 Arguments: <requested arguments> (ticket ID or feature name)
 
-## Step -1: Initialize Serena (auto-onboard if needed)
-
-Run in order at session start:
-
-1. Call `mcp__serena__initial_instructions` — load Serena's instructions manual.
-2. Call `mcp__serena__check_onboarding_performed`.
-3. **If not onboarded:**
-   - Probe for code: `find . -maxdepth 3 -type f -name '*.dart' -not -path '*/.*' | head -1`
-   - If a Dart file is found → call `mcp__serena__onboarding` (one-time per project; builds symbol index + memories).
-   - If empty → SKIP onboarding; tell the user: "Serena onboarding skipped — no Dart code detected. Will auto-run on the next implement workflow once code exists." Fall back to built-in search and read tools for this run.
-4. **If already onboarded:** proceed.
-
-Use Serena tools (`find_symbol`, `find_referencing_symbols`, `get_symbols_overview`, …) for codebase exploration. Prefer them over built-in text search when semantic lookup applies. To force re-onboarding after a large refactor, invoke the `serena-refresh` skill.
-
 ## Project Type Detection (MUST DO FIRST)
 - **Modular**: `packages/` directory exists → multi-package project with melos
 - **Single-module**: No `packages/` directory → single `lib/` project

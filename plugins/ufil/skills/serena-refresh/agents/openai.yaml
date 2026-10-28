@@ -1,7 +1,0 @@
-interface:
-  display_name: "Refresh Serena Index"
-  short_description: "Re-run Serena onboarding and indexing"
-  default_prompt: "Use $ufil:serena-refresh to refresh Serena for this project."
-
-policy:
-  allow_implicit_invocation: false
