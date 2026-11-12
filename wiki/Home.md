@@ -16,6 +16,12 @@ Token-saving CLI proxy that intercepts `git`, `flutter`, `dart`, `melos`, etc. a
 - [Usage in Plugins](RTK-Usage-in-Plugins)
 - [Troubleshooting](RTK-Troubleshooting)
 
+### 🎨 Design Systems (designku)
+
+Platform-agnostic design tokens, a catalog of accessible atomic design systems, generated Flutter theme/atoms and a hook that blocks hardcoded colors, fonts and spacing.
+
+- [Design Systems — Overview](Design-Systems)
+
 ### 🎯 Dart MCP — *coming soon*
 
 Dart-native MCP server bundled with UFIL. Handles pub, build_runner, melos, and Flutter-specific analysis.

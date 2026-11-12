@@ -15,6 +15,7 @@ Each plugin comes with opinionated rules, automated tooling, and AI-powered agen
 | ----------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
 | [**ufil**](plugins/ufil/)     | Flutter/Dart | UFIL (Ultimate Flutter Intelligent Layer) — Clean Architecture + Modularization with Dart MCP & LSP integration |
 | [**rubyku**](plugins/rubyku/) | Ruby/Rails   | Rails 8 development — Rails Way architecture, Hotwire-first frontend                                                   |
+| [**designku**](plugins/designku/) | Flutter (React Native planned) | Design system catalog — pick, customize or create an accessible atomic design system, HTML previews, generated tokens/theme/atoms, hardcoded-style enforcement |
 | _Coming soon_                 | React Native | TBD                                                                                                             |
 | _Coming soon_                 | Kotlin       | TBD                                                                                                             |
 | _Coming soon_                 | Express      | TBD                                                                                                             |

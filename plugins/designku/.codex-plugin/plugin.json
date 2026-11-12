@@ -1,0 +1,39 @@
+{
+  "name": "designku",
+  "version": "0.1.0",
+  "description": "Design system catalog, HTML previews, Flutter token generation and enforcement for mobile apps.",
+  "author": {
+    "name": "Ghozi Mahdi",
+    "email": "ghozi.dev@gmail.com",
+    "url": "https://github.com/ghozimahdi"
+  },
+  "homepage": "https://github.com/ghozimahdi/gm-aiagent-plugins/tree/main/plugins/designku",
+  "repository": "https://github.com/ghozimahdi/gm-aiagent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "atomic-design",
+    "flutter",
+    "theme",
+    "accessibility",
+    "wcag"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "designku",
+    "shortDescription": "Design systems for vibe-coded mobile apps",
+    "longDescription": "Browse a catalog of accessible atomic design systems, customize or create your own, preview every token and component in HTML, generate Flutter tokens, theme and atoms, and stop agents from hardcoding colors, fonts and spacing.",
+    "developerName": "Ghozi Mahdi",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "List the available design systems and help me pick one.",
+      "Create a custom design system from my brand color.",
+      "Review this Flutter UI for design token violations."
+    ]
+  }
+}
