@@ -69,6 +69,24 @@ rsync -a --delete --exclude='.git' wiki/ /tmp/gm-wiki/
 cd /tmp/gm-wiki && git add -A && git commit -m "Manual wiki sync" && git push
 ```
 
+## 🎯 Support Us
+
+This project is maintained by an independent developer. Support further development through sponsorship!
+💖 Your donations help us to:
+
+- Add new features.
+- Fix bugs faster.
+- Improve documentation.
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-blue)](https://github.com/sponsors/ghozimahdi)
+
+Ko-fi: [ghozimahdi-ko-fi](https://ko-fi.com/ghozimahdi)
+
+QRIS (GoPay, BCA, Mandiri, BNI, BRI, and other Indonesian banks / e-wallets):
+
+<img src="assets/qris-gopay.jpg" alt="QRIS donation code" width="280">
+
+
 ## Contributing
 
 Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
