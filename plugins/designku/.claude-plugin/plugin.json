@@ -1,0 +1,22 @@
+{
+  "name": "designku",
+  "version": "0.1.0",
+  "description": "designku — design system catalog for vibe-coded mobile apps. Pick, customize or create an accessible atomic design system, preview it in HTML, generate Flutter tokens/theme/atoms, and block hardcoded colors, fonts and spacing.",
+  "author": {
+    "name": "Ghozi Mahdi",
+    "email": "ghozi.dev@gmail.com"
+  },
+  "repository": "https://github.com/ghozimahdi/gm-aiagent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "atomic-design",
+    "flutter",
+    "theme",
+    "accessibility",
+    "wcag",
+    "ui",
+    "ux"
+  ]
+}
