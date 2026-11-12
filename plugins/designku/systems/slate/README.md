@@ -16,17 +16,17 @@ Open [`preview.html`](preview.html) in a browser to see every token, atom, molec
 
 | Role | Light | Dark |
 | --- | --- | --- |
-| `primary` | `#29313D` | `#D9E3F3` |
+| `primary` | `#29313D` | `#DEE3EA` |
 | `onPrimary` | `#FFFFFF` | `#29313D` |
-| `primaryContainer` | `#D9E3F3` | `#3F4754` |
-| `secondary` | `#555F6D` | `#BCC7D7` |
+| `primaryContainer` | `#DEE3EA` | `#3F4754` |
+| `secondary` | `#555F6D` | `#BEC7D4` |
 | `tertiary` | `#1557C9` | `#A7C8FF` |
 | `surface` | `#F8F9FC` | `#121315` |
 | `onSurface` | `#1A1C1D` | `#E1E3E5` |
 | `outline` | `#72777F` | `#8C9199` |
 | `error` | `#BA1A1A` | `#FFB4AA` |
-| `success` | `#006E29` | `#76DC87` |
-| `warning` | `#8A5100` | `#FFB870` |
+| `success` | `#006E29` | `#8AD895` |
+| `warning` | `#8A5100` | `#F8BA7D` |
 | `info` | `#005DB6` | `#A0CAFF` |
 
 ## Design rationale

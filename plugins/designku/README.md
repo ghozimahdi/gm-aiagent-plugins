@@ -88,12 +88,13 @@ this palette and typography, do / don't).
 | --- | --- | --- | --- | --- | --- | --- |
 | **A** | [`aegis`](systems/aegis/) | Aegis | Fintech, banking, insurance, payments | `#1F54D2` / `#AAC7FF` | Manrope / Public Sans | rounded, comfortable |
 | **B** | [`serene`](systems/serene/) | Serene | Health, wellness, telemedicine, mental health, habits | `#166A5C` / `#88D5C3` | Outfit / Figtree | pill, spacious |
-| **C** | [`bazaar`](systems/bazaar/) | Bazaar | E-commerce, marketplace, retail, deals | `#BA4400` / `#FFB599` | Plus Jakarta Sans | soft, comfortable |
+| **C** | [`bazaar`](systems/bazaar/) | Bazaar | E-commerce, marketplace, retail, deals | `#C53700` / `#FFB5A0` | Plus Jakarta Sans | soft, comfortable |
 | **D** | [`focus`](systems/focus/) | Focus | Productivity, tasks, notes, SaaS | `#4E44E3` / `#B9C3FF` | Inter | soft, compact |
 | **E** | [`sprout`](systems/sprout/) | Sprout | Education, kids and family, gamified learning | `#216D00` / `#85DB6E` | Baloo 2 / Nunito | rounded, spacious |
 | **F** | [`kopi`](systems/kopi/) | Kopi | Food and beverage, travel, lifestyle, hospitality | `#835332` / `#F2BB97` | Fraunces / DM Sans | soft, comfortable |
 | **G** | [`pulse`](systems/pulse/) | Pulse | Social, community, creators, entertainment | `#B1008D` / `#FFADE3` | Sora / Be Vietnam Pro | pill, comfortable |
 | **H** | [`slate`](systems/slate/) | Slate | Enterprise, B2B, admin, white-label base | `#29313D` / `#D9E3F3` | IBM Plex Sans | sharp, compact |
+| **I** | [`tinta`](systems/tinta/) | Tinta | Creator tools, content/video editing, indie SaaS — **neo-brutalism** (ink outline + hard offset shadow) | `#1460ED` / `#A8C8FF` | Jost / Mulish | soft, comfortable, brutal |
 
 All fonts are free Google Fonts (OFL) with system fallbacks.
 

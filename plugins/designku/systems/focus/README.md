@@ -19,14 +19,14 @@ Open [`preview.html`](preview.html) in a browser to see every token, atom, molec
 | `primary` | `#4E44E3` | `#B9C3FF` |
 | `onPrimary` | `#FFFFFF` | `#2B009E` |
 | `primaryContainer` | `#DBE1FF` | `#3C23C6` |
-| `secondary` | `#555F71` | `#BCC7DC` |
-| `tertiary` | `#006A60` | `#71D8C9` |
+| `secondary` | `#555F71` | `#BEC7D7` |
+| `tertiary` | `#006A60` | `#87D5C8` |
 | `surface` | `#F8F9FD` | `#131316` |
 | `onSurface` | `#1B1B1E` | `#E1E2E6` |
 | `outline` | `#757780` | `#8E909A` |
 | `error` | `#BA1A1A` | `#FFB4AA` |
-| `success` | `#006E29` | `#76DC87` |
-| `warning` | `#8A5100` | `#FFB870` |
+| `success` | `#006E29` | `#8AD895` |
+| `warning` | `#8A5100` | `#F8BA7D` |
 | `info` | `#005DB6` | `#A0CAFF` |
 
 ## Design rationale

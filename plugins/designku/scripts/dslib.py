@@ -310,6 +310,8 @@ FONTS = {
     "Manrope": ("sans", "Geometric, confident, good numerals"),
     "Public Sans": ("sans", "Plain, institutional, very legible"),
     "Plus Jakarta Sans": ("sans", "Friendly geometric, retail-ready"),
+    "Jost": ("sans", "Geometric, Futura-like poster headlines"),
+    "Mulish": ("sans", "Minimal sans, very legible at small UI sizes"),
     "DM Sans": ("sans", "Low-contrast geometric, warm"),
     "Figtree": ("sans", "Clean and gentle, open shapes"),
     "Outfit": ("sans", "Soft geometric headlines"),

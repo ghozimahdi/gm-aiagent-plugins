@@ -34,6 +34,7 @@ single source of truth; previews and platform code are generated from it.
 | `shape` | `dimension` | Per-component radius, aliases into `radius`: `button`, `input`, `card`, `chip`, `dialog`, `sheet` |
 | `borderWidth` | `dimension` | `none`, `thin` 1, `thick` 2, `focus` 3 |
 | `elevation.level0…level5` | `shadow` | Array of shadow layers (`color` as `#RRGGBBAA`, `offsetX`, `offsetY`, `blur`, `spread`); the Material dp value is in `$extensions.designku.dp` |
+| `effect` | mixed | Surface style: `style` (`material` \| `brutal`), `strokeWidth`, `shadowOffset` (hard shadow, zero blur, color `onSurface`), `shadowInDark` (boolean). Optional in older files; generators treat a missing group as `material` |
 | `motion.duration` | `duration` | `instant`, `fast`, `normal`, `slow`, `slower` |
 | `motion.easing` | `cubicBezier` | `standard`, `emphasized`, `decelerate`, `accelerate` |
 | `iconSize` | `dimension` | `xs` 16, `sm` 20, `md` 24, `lg` 32, `xl` 48 |
@@ -141,6 +142,8 @@ re-derived (`/designku:ds-customize`):
 | `darkStyle` | `tinted`, `oled` | Dark surface tones (6 vs 4, never pure black) |
 | `contrast` | `AA`, `AAA` | Role tone mapping and validator threshold |
 | `tones` | `{light: {role: tone}, dark: {…}}` | Per-role tone overrides (e.g. Slate's graphite primary at tone 20) |
+| `overrides` | `{light: {role: hex}, dark: {…}}` | Exact hex per semantic role, for systems ported from an existing brand (e.g. Tinta from Cuplikin). Still validated like every other role |
+| `style` | `material`, `brutal` | `effect` group. `brutal` = neo-brutalism: 1.5px ink outline + 3px hard offset shadow on primary actions, FAB, elevated cards and dialogs; off in dark mode |
 
 ## Platform generators
 

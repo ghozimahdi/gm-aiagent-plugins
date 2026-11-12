@@ -35,6 +35,14 @@ DEFAULT_SPEC = {
     "darkStyle": "tinted",  # tinted | oled
     "contrast": "AA",  # AA | AAA
     "tones": {"light": {}, "dark": {}},  # role -> tone override, e.g. {"light": {"primary": 45}}
+    "overrides": {"light": {}, "dark": {}},  # role -> exact hex, for systems ported from an existing brand
+    "style": "material",  # material | brutal (neo-brutalism: ink stroke + hard offset shadow)
+}
+
+# style -> (stroke width px, hard shadow offset px, hard shadow in dark mode)
+STYLES = {
+    "material": (0, 0, False),
+    "brutal": (1.5, 3, False),
 }
 
 # mood -> (secondary chroma factor, tertiary hue shift, tertiary chroma factor, neutral chroma)
@@ -143,6 +151,22 @@ def _seed_hc(spec: dict) -> dict[str, tuple[float, float]]:
     return hc
 
 
+def _chroma_taper(tone: int) -> float:
+    """Desaturate the light end of chromatic ramps.
+
+    Container fills (tone 90+) at full seed chroma turn neon (mint-green success
+    badges, candy-pink errors) and fight the brand color. Tapering keeps them as
+    quiet tints; contrast is unaffected because it depends on tone only.
+    """
+    if tone >= 95:
+        return 0.35
+    if tone >= 90:
+        return 0.45
+    if tone >= 80:
+        return 0.80
+    return 1.0
+
+
 class _Palette:
     def __init__(self, hc: dict[str, tuple[float, float]]):
         self.hc = hc
@@ -152,6 +176,8 @@ class _Palette:
         tone = int(tone)
         if tone not in self.tones[name]:
             hue, chroma = self.hc[name]
+            if name in FAMILIES:
+                chroma *= _chroma_taper(tone)
             self.tones[name][tone] = L.tonal_color(hue, chroma, tone)
         return self.tones[name][tone]
 
@@ -224,6 +250,10 @@ def _semantic(spec: dict, pal: _Palette, mode: str) -> dict:
         inv_tone = inv_default  # the mirrored tone is too weak on inverseSurface
     put("inversePrimary", "primary", inv_tone)
     out["surfaceTint"] = _tok("color", "{color.%s.primary}" % mode, "Elevation tint")
+    for role, hex_value in ((spec.get("overrides") or {}).get(mode) or {}).items():
+        if role not in out:
+            raise ValueError(f"overrides.{mode}.{role}: unknown color role")
+        out[role] = _tok("color", L.rgb_to_hex(L.hex_to_rgb(hex_value)), out[role].get("$description"))
     return out
 
 
@@ -338,6 +368,18 @@ def build_tokens(meta: dict, spec_in: dict) -> dict:
         },
     }
 
+    # ---- surface style (material = shadows only; brutal = ink stroke + hard offset shadow)
+    style = spec.get("style", "material")
+    if style not in STYLES:
+        raise ValueError(f"unknown style '{style}' (use one of {', '.join(STYLES)})")
+    stroke, offset, in_dark = STYLES[style]
+    effect = {
+        "style": _tok("string", style, "material | brutal"),
+        "strokeWidth": _tok("dimension", _px(stroke), "Ink outline on primary actions and raised surfaces (0 = none)"),
+        "shadowOffset": _tok("dimension", _px(offset), "Hard shadow x/y offset, zero blur, color onSurface (0 = none)"),
+        "shadowInDark": _tok("boolean", in_dark, "Hard shadow also drawn in dark mode"),
+    }
+
     info = copy.deepcopy(meta)
     info["schemaVersion"] = L.SCHEMA_VERSION
     info["spec"] = spec
@@ -370,6 +412,7 @@ def build_tokens(meta: dict, spec_in: dict) -> dict:
             "focus": _tok("dimension", _px(3), "Keyboard focus ring"),
         },
         "elevation": elevation,
+        "effect": effect,
         "motion": motion,
         "iconSize": {
             "xs": _tok("dimension", _px(16)),

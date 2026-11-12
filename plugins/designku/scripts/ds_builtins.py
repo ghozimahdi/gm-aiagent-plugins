@@ -71,7 +71,7 @@ BUILTINS = [
             ],
         },
         "spec": {
-            "primary": "#2B7A6B", "secondary": "#5C7A84", "tertiary": "#B4674A",
+            "primary": "#2B7A6B", "secondary": "#4F7A70", "tertiary": "#B4674A",
             "neutralChroma": 0.010, "mood": "calm",
             "fonts": {"display": "Outfit", "body": "Figtree", "mono": "JetBrains Mono"},
             "type": {"displayWeight": 500, "headlineWeight": 600, "titleWeight": 600, "labelWeight": 600, "bodyWeight": 400, "displayTracking": -0.5},
@@ -86,7 +86,7 @@ BUILTINS = [
             "audience": "Deal-seeking shoppers browsing fast with one thumb, comparing many items, often on mid-range Android devices.",
             "personality": ["energetic", "direct", "generous", "dependable"],
             "rationale": {
-                "color": "A hot orange-red primary draws the eye to Buy and Add-to-cart; warm hues raise arousal and are the convention shoppers already know from major marketplaces. It is darkened to tone 45 so white button labels pass AA (most marketplace oranges do not). A deep navy secondary anchors checkout and payment screens with trust, and a bright yellow tertiary is reserved for promos and ratings. Error is shifted to crimson so it can never be confused with the orange CTA.",
+                "color": "A hot orange-red primary draws the eye to Buy and Add-to-cart; warm hues raise arousal and are the convention shoppers already know from major marketplaces. It is darkened to tone 45 so white button labels pass AA (most marketplace oranges do not). The secondary is a muted terracotta in the same hue family, so selected chips, tabs and tonal buttons read as part of the brand instead of introducing a second color; a bright yellow tertiary is the only accent, reserved for promos and ratings. Neutrals are a warm sand so greys never look cold next to the orange. Error is shifted to crimson so it can never be confused with the red-orange CTA, and it always carries an icon.",
                 "typography": "Plus Jakarta Sans throughout: friendly, compact, and its bold weights keep prices punchy at small sizes.",
                 "shape": "Soft 8-12px corners maximize the image area on product cards. Comfortable density keeps the buy button a full 48px.",
                 "motion": "Snappy (80% durations) — browsing should feel fast; add-to-cart feedback is immediate.",
@@ -103,8 +103,8 @@ BUILTINS = [
             ],
         },
         "spec": {
-            "primary": "#E2570A", "secondary": "#2F4A7C", "tertiary": "#E0A800",
-            "error": "#B0125A", "neutralChroma": 0.006, "neutralHue": 60, "mood": "vibrant",
+            "primary": "#F4511E", "secondary": "#A8623F", "tertiary": "#E0A800",
+            "error": "#B0125A", "neutralChroma": 0.012, "neutralHue": 60, "mood": "vibrant",
             "fonts": {"display": "Plus Jakarta Sans", "body": "Plus Jakarta Sans", "mono": "JetBrains Mono"},
             "type": {"displayWeight": 700, "headlineWeight": 700, "titleWeight": 700, "labelWeight": 600, "bodyWeight": 400, "displayTracking": -0.8},
             "corner": "soft", "density": "comfortable", "motion": "snappy", "elevation": "soft",
@@ -151,7 +151,7 @@ BUILTINS = [
             "audience": "Children 6-12 with a parent nearby, and casual adult learners doing five-minute sessions; developing readers and imprecise motor control.",
             "personality": ["playful", "encouraging", "bright", "safe"],
             "rationale": {
-                "color": "Leaf green signals growth and 'correct', and is gender-neutral for children. Coral secondary and sunshine yellow tertiary give the multi-color richness kids respond to, while each still gets a full accessible tonal ramp. Because green doubles as success, wrong answers use an error container with an icon and a gentle message rather than a red screen.",
+                "color": "Leaf green signals growth and 'correct', and is gender-neutral for children. A softer leaf-green secondary keeps selection and tonal states in the brand family, and a sunshine yellow tertiary supplies the playful accent for stars, streaks and rewards. Because green doubles as success, wrong answers use an error container with an icon and a gentle message rather than a red screen.",
                 "typography": "Baloo 2 headlines are chunky and friendly. Nunito body has rounded terminals and clearly distinct letterforms (a, g, l, I), which helps early readers.",
                 "shape": "Rounded 16-24px corners and spacious density: 52px buttons and 72px list rows forgive imprecise taps.",
                 "motion": "Expressive: 120% durations and an overshoot curve on the emphasized easing make rewards feel alive. Always respect reduce-motion.",
@@ -168,7 +168,7 @@ BUILTINS = [
             ],
         },
         "spec": {
-            "primary": "#3A8F1E", "secondary": "#D2553A", "tertiary": "#D9A300",
+            "primary": "#3A8F1E", "secondary": "#5E8A3C", "tertiary": "#D9A300",
             "neutralChroma": 0.012, "neutralHue": 110, "mood": "playful",
             "fonts": {"display": "Baloo 2", "body": "Nunito", "mono": "JetBrains Mono"},
             "type": {"displayWeight": 700, "headlineWeight": 700, "titleWeight": 700, "labelWeight": 700, "bodyWeight": 500, "displayTracking": -0.3},
@@ -183,7 +183,7 @@ BUILTINS = [
             "audience": "Customers ordering or browsing at leisure; emotional, sensory decisions driven by photography.",
             "personality": ["warm", "crafted", "inviting", "unpretentious"],
             "rationale": {
-                "color": "Roasted-coffee brown is earthy and appetizing and, unlike saturated red or orange, never fights with food photography. Matcha-olive secondary supports fresh and plant-based cues; caramel-saffron tertiary highlights specials. Neutrals are a warm cream (higher chroma, hue 75) instead of clinical white, like paper or linen.",
+                "color": "Roasted-coffee brown is earthy and appetizing and, unlike saturated red or orange, never fights with food photography. A muted latte secondary keeps selected and tonal states inside the coffee family; caramel-saffron tertiary highlights specials. Neutrals are a warm cream (higher chroma, hue 75) instead of clinical white, like paper or linen.",
                 "typography": "Fraunces, a soft old-style serif, gives headlines the feel of a printed menu. DM Sans body keeps prices and options clean and modern.",
                 "shape": "Soft 8-16px corners, comfortable density. Cards are image-first with generous padding.",
                 "motion": "Balanced and gentle; image fades and sheet transitions use the slow duration.",
@@ -200,7 +200,7 @@ BUILTINS = [
             ],
         },
         "spec": {
-            "primary": "#7A4B2A", "secondary": "#6B7A3A", "tertiary": "#C27A1A",
+            "primary": "#7A4B2A", "secondary": "#8A6A52", "tertiary": "#C27A1A",
             "error": "#B3123F", "neutralChroma": 0.014, "neutralHue": 75, "mood": "warm",
             "fonts": {"display": "Fraunces", "body": "DM Sans", "mono": "JetBrains Mono"},
             "type": {"displayWeight": 600, "headlineWeight": 600, "titleWeight": 600, "labelWeight": 600, "bodyWeight": 400, "displayTracking": -0.6},
@@ -215,7 +215,7 @@ BUILTINS = [
             "audience": "Gen Z and young millennials in short, frequent, often night-time sessions; content is user-generated photo and video.",
             "personality": ["bold", "expressive", "youthful", "immersive"],
             "rationale": {
-                "color": "Electric magenta is high-arousal and ownable in a category crowded with blue. Violet secondary and cyan tertiary form a wide triad for stories, reactions and live states. Dark mode uses a near-black tinted surface (the one context where it is appropriate) so media pops and OLED screens save power — but never pure #000, which smears when scrolling.",
+                "color": "Electric magenta is high-arousal and ownable in a category crowded with blue. A dusty orchid secondary keeps selection states in the magenta family, and a violet tertiary is the analogous accent for stories, reactions and live states. Dark mode uses a near-black tinted surface (the one context where it is appropriate) so media pops and OLED screens save power — but never pure #000, which smears when scrolling.",
                 "typography": "Sora headlines are wide and confident; Be Vietnam Pro body text stays readable in dense comment threads.",
                 "shape": "Pill buttons and chips, large card radii — everything feels tappable and soft. Comfortable density.",
                 "motion": "Expressive: overshoot on likes and reactions; 120% durations. Always respect reduce-motion.",
@@ -232,7 +232,7 @@ BUILTINS = [
             ],
         },
         "spec": {
-            "primary": "#C2189B", "secondary": "#6D4BD8", "tertiary": "#0891B2",
+            "primary": "#C2189B", "secondary": "#A0478C", "tertiary": "#6D4BD8",
             "error": "#C62810", "neutralChroma": 0.010, "mood": "vibrant",
             "fonts": {"display": "Sora", "body": "Be Vietnam Pro", "mono": "JetBrains Mono"},
             "type": {"displayWeight": 700, "headlineWeight": 700, "titleWeight": 600, "labelWeight": 600, "bodyWeight": 400, "displayTracking": -1.2},
@@ -271,6 +271,64 @@ BUILTINS = [
             "type": {"displayWeight": 600, "headlineWeight": 600, "titleWeight": 600, "labelWeight": 500, "bodyWeight": 400, "displayTracking": -0.8},
             "corner": "sharp", "density": "compact", "motion": "snappy", "elevation": "flat",
             "tones": {"light": {"primary": 20}, "dark": {"primary": 90}},
+        },
+    },
+    {
+        "meta": {
+            "id": "tinta", "name": "Tinta", "letter": "I", "group": "business",
+            "context": "Creator tools, content and video editing, indie SaaS, startups",
+            "tagline": "Neo-brutalism: ink outlines and hard offset shadows on warm paper, bold but still accessible.",
+            "audience": "Creators, marketers and small teams who want a tool that feels confident and hand-made rather than corporate, and who return to it daily to make things.",
+            "personality": ["bold", "honest", "playful", "crafted"],
+            "rationale": {
+                "color": "Ported from the Cuplikin app. A saturated electric blue primary on an off-white, faintly green 'paper' background, with deep navy 'ink' for text, outlines and shadows instead of pure black, which keeps the brutalist contrast but softens it. Pastel mint, sky, peach and lavender containers act like highlighter marks for tags, credits and status, and the blue stays the only saturated color on screen. Dark mode switches to calm zinc greys and drops the hard shadow, because a light offset shadow on a dark surface looks like a rendering glitch.",
+                "typography": "Jost headlines (geometric, Futura-like, with a poster feel) pair with Mulish body text, which stays highly legible at small sizes in dense editor UIs.",
+                "shape": "Neo-brutalism: primary buttons, the FAB, elevated cards and dialogs get a 1.5px ink outline and a 3px hard shadow with zero blur. Pressing a button moves it into its shadow, so it feels physically pushed. Medium radii (12-16px) keep it friendly rather than raw. Secondary buttons, cards and inputs use thin light borders and no shadow, so the raised treatment always marks the one thing to press.",
+                "motion": "Snappy. The press-into-shadow translate is the main motion; everything else stays short.",
+            },
+            "do": [
+                "Give the hard shadow only to the single primary action per region (DsButton filled/danger, FAB) and to elevated cards or dialogs; everything else stays flat with thin borders.",
+                "Use the pastel containers (primaryContainer = sky, tertiaryContainer = mint, warningContainer = peach) for badges, tags and credit or status chips.",
+                "Keep text and outlines in onSurface (ink); never use pure black.",
+            ],
+            "dont": [
+                "Do not hand-draw BoxShadow or borders in feature code. DsEffect and the Ds* atoms already apply the outline and hard shadow, and switch them off in dark mode.",
+                "Do not stack several raised (shadowed) elements next to each other; neo-brutalism loses hierarchy when everything pops.",
+                "Do not add blur to the shadow or color it with the brand blue; it is always a zero-blur ink offset.",
+            ],
+        },
+        "spec": {
+            "primary": "#1460ED", "secondary": "#4A6390", "tertiary": "#5E8C1E",
+            "error": "#B43C30", "success": "#48723B", "warning": "#A45A0C",
+            "neutralHue": 114, "neutralChroma": 0.010, "mood": "playful",
+            "fonts": {"display": "Jost", "body": "Mulish", "mono": "JetBrains Mono"},
+            "type": {"displayWeight": 600, "headlineWeight": 600, "titleWeight": 700, "labelWeight": 700, "bodyWeight": 400, "displayTracking": -0.6},
+            "corner": "soft", "density": "comfortable", "motion": "snappy", "elevation": "flat",
+            "style": "brutal",
+            "overrides": {
+                "light": {
+                    "primary": "#1460ED", "onPrimary": "#FFFFFF",
+                    "primaryContainer": "#E8F1FF", "secondaryContainer": "#E8F1FF",
+                    "tertiaryContainer": "#D3F7AC", "onTertiaryContainer": "#1D4B19",
+                    "warningContainer": "#FFD2B2", "onWarningContainer": "#6B3A14",
+                    "errorContainer": "#FBE6E2",
+                    "background": "#F8F9F3", "surface": "#F8F9F3", "surfaceBright": "#F8F9F3",
+                    "surfaceContainerLowest": "#FFFFFF", "surfaceContainerLow": "#F0F2E9",
+                    "surfaceContainer": "#EEF1E7",
+                    "onBackground": "#192C42", "onSurface": "#192C42", "onSurfaceVariant": "#526174",
+                    "outlineVariant": "#DCE1D9", "inverseSurface": "#192C42",
+                },
+                "dark": {
+                    "background": "#141416", "surface": "#141416", "surfaceDim": "#141416",
+                    "surfaceContainerLowest": "#0D0D0F", "surfaceContainerLow": "#18181B",
+                    "surfaceContainer": "#1C1C1F", "surfaceContainerHigh": "#28282C",
+                    "surfaceContainerHighest": "#323237",
+                    "onBackground": "#EDEDF0", "onSurface": "#EDEDF0", "onSurfaceVariant": "#A1A1AA",
+                    "outlineVariant": "#303034", "surfaceVariant": "#28282C", "outline": "#8E8E96",
+                    "primaryContainer": "#263249", "secondaryContainer": "#263249",
+                    "tertiaryContainer": "#29352D", "warningContainer": "#3B302A", "errorContainer": "#3A2724",
+                },
+            },
         },
     },
 ]

@@ -273,6 +273,63 @@ def gen_elevation(tokens: dict) -> str:
             + _accessor("DsElevationTokens", "DsElevation", "double", [n for n, _ in dps]))
 
 
+def gen_effects(tokens: dict) -> str:
+    def val(name, default):
+        try:
+            return L.tv(tokens, f"effect.{name}")
+        except KeyError:
+            return default
+    style = val("style", "material")
+    stroke = L.num(val("strokeWidth", {"value": 0, "unit": "px"}))
+    offset = L.num(val("shadowOffset", {"value": 0, "unit": "px"}))
+    in_dark = bool(val("shadowInDark", False))
+    return f"""import 'package:flutter/material.dart';
+
+/// Surface style of this design system: `material` (soft shadows only) or
+/// `brutal` (neo-brutalism: ink outline + hard offset shadow with zero blur).
+///
+/// Atoms read this; feature code never draws its own outline or shadow.
+abstract final class DsEffect {{
+  static const String style = '{style}';
+  static const double strokeWidth = {dnum(stroke)};
+  static const double shadowOffset = {dnum(offset)};
+  static const bool shadowInDark = {'true' if in_dark else 'false'};
+
+  static bool _active(BuildContext context) {{
+    if (strokeWidth == 0 && shadowOffset == 0) {{
+      return false;
+    }}
+    return shadowInDark || Theme.of(context).brightness == Brightness.light;
+  }}
+
+  /// Ink outline for primary actions and raised surfaces ([BorderSide.none]
+  /// when the style has none or in dark mode without [shadowInDark]).
+  static BorderSide stroke(BuildContext context) {{
+    if (strokeWidth == 0 || !_active(context)) {{
+      return BorderSide.none;
+    }}
+    return BorderSide(
+      color: Theme.of(context).colorScheme.onSurface,
+      width: strokeWidth,
+    );
+  }}
+
+  /// Hard offset shadow (zero blur, onSurface color), empty when not used.
+  static List<BoxShadow> hardShadow(BuildContext context) {{
+    if (shadowOffset == 0 || !_active(context)) {{
+      return const <BoxShadow>[];
+    }}
+    return <BoxShadow>[
+      BoxShadow(
+        color: Theme.of(context).colorScheme.onSurface,
+        offset: const Offset(shadowOffset, shadowOffset),
+      ),
+    ];
+  }}
+}}
+"""
+
+
 def gen_motion(tokens: dict) -> str:
     durations = [(ident(n), int(L.num(v))) for n, v in L.group_items(tokens, "motion.duration")]
     easings = [(ident(n), v) for n, v in L.group_items(tokens, "motion.easing")]
@@ -616,6 +673,8 @@ class DsGap extends StatelessWidget {
     "ds_button.dart": r"""import 'package:flutter/material.dart';
 
 import '../ds_context.dart';
+import '../ds_effects.dart';
+import '../ds_radius.dart';
 import '../ds_sizes.dart';
 import '../ds_spacing.dart';
 
@@ -661,12 +720,33 @@ class DsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.ds.colors;
     final VoidCallback? action = loading ? null : onPressed;
-    final ButtonStyle sizeStyle = ButtonStyle(
+    // Brutal style: filled/danger actions get an ink outline + hard shadow.
+    final bool raised =
+        action != null &&
+        (variant == DsButtonVariant.filled ||
+            variant == DsButtonVariant.danger);
+    final List<BoxShadow> shadows = raised
+        ? DsEffect.hardShadow(context)
+        : const <BoxShadow>[];
+    final BorderSide stroke = raised
+        ? DsEffect.stroke(context)
+        : BorderSide.none;
+    // A hard shadow must hug the visible button, so raised buttons are drawn
+    // at least touchTarget tall instead of relying on invisible tap padding.
+    final double height = shadows.isEmpty
+        ? _height
+        : (_height < DsSizes.touchTarget ? DsSizes.touchTarget : _height);
+    ButtonStyle sizeStyle = ButtonStyle(
       minimumSize: WidgetStatePropertyAll<Size>(
-        Size(expand ? double.infinity : DsSizes.touchTarget, _height),
+        Size(expand ? double.infinity : DsSizes.touchTarget, height),
       ),
       tapTargetSize: MaterialTapTargetSize.padded,
     );
+    if (stroke != BorderSide.none) {
+      sizeStyle = sizeStyle.copyWith(
+        side: WidgetStatePropertyAll<BorderSide>(stroke),
+      );
+    }
 
     final Widget child = Row(
       mainAxisSize: MainAxisSize.min,
@@ -736,7 +816,15 @@ class DsButton extends StatelessWidget {
       button: true,
       enabled: action != null,
       liveRegion: loading,
-      child: button,
+      child: shadows.isEmpty
+          ? button
+          : DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: DsShape.button,
+                boxShadow: shadows,
+              ),
+              child: button,
+            ),
     );
   }
 }
@@ -832,6 +920,7 @@ class DsTextField extends StatelessWidget {
     "ds_card.dart": r"""import 'package:flutter/material.dart';
 
 import '../ds_context.dart';
+import '../ds_effects.dart';
 import '../ds_elevation.dart';
 import '../ds_radius.dart';
 import '../ds_sizes.dart';
@@ -881,19 +970,47 @@ class DsCard extends StatelessWidget {
           ),
         };
     final Widget content = Padding(padding: padding, child: child);
+    final List<BoxShadow> hard = variant == DsCardVariant.elevated
+        ? DsEffect.hardShadow(context)
+        : const <BoxShadow>[];
+    final Widget body = onTap == null
+        ? content
+        : InkWell(onTap: onTap, child: content);
+    final Widget card = hard.isEmpty
+        ? Card(
+            color: background,
+            elevation: elevation,
+            shadowColor: colors.shadow,
+            shape: RoundedRectangleBorder(
+              borderRadius: DsShape.card,
+              side: side,
+            ),
+            child: body,
+          )
+        : Padding(
+            padding: const EdgeInsets.all(DsSpacing.xs),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: DsShape.card,
+                boxShadow: hard,
+              ),
+              child: Card(
+                margin: EdgeInsets.zero,
+                color: background,
+                elevation: DsElevation.level0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: DsShape.card,
+                  side: DsEffect.stroke(context),
+                ),
+                child: body,
+              ),
+            ),
+          );
     return Semantics(
       container: true,
       button: onTap != null,
       label: semanticLabel,
-      child: Card(
-        color: background,
-        elevation: elevation,
-        shadowColor: colors.shadow,
-        shape: RoundedRectangleBorder(borderRadius: DsShape.card, side: side),
-        child: onTap == null
-            ? content
-            : InkWell(onTap: onTap, child: content),
-      ),
+      child: card,
     );
   }
 }
@@ -1139,6 +1256,7 @@ def apply(project: Path, sync: bool = False, fmt: bool = True) -> int:
         "ds_radius.dart": gen_radius(tokens),
         "ds_elevation.dart": gen_elevation(tokens),
         "ds_motion.dart": gen_motion(tokens),
+        "ds_effects.dart": gen_effects(tokens),
         "ds_sizes.dart": gen_sizes(tokens),
         "ds_theme.dart": THEME,
         "ds_context.dart": CONTEXT,

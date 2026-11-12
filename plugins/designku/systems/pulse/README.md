@@ -19,19 +19,19 @@ Open [`preview.html`](preview.html) in a browser to see every token, atom, molec
 | `primary` | `#B1008D` | `#FFADE3` |
 | `onPrimary` | `#FFFFFF` | `#60004B` |
 | `primaryContainer` | `#FFD7F0` | `#87006B` |
-| `secondary` | `#6642CF` | `#C5C0FF` |
-| `tertiary` | `#006780` | `#67D4F7` |
+| `secondary` | `#953D81` | `#FCAEE7` |
+| `tertiary` | `#6642CF` | `#C5C0FF` |
 | `surface` | `#FFF7FC` | `#120D10` |
 | `onSurface` | `#1F1A1D` | `#E8E0E5` |
 | `outline` | `#83727D` | `#9D8C97` |
 | `error` | `#BA1A00` | `#FFB4A5` |
-| `success` | `#006E29` | `#76DC87` |
-| `warning` | `#8A5100` | `#FFB870` |
+| `success` | `#006E29` | `#8AD895` |
+| `warning` | `#8A5100` | `#F8BA7D` |
 | `info` | `#005DB6` | `#A0CAFF` |
 
 ## Design rationale
 
-**Color.** Electric magenta is high-arousal and ownable in a category crowded with blue. Violet secondary and cyan tertiary form a wide triad for stories, reactions and live states. Dark mode uses a near-black tinted surface (the one context where it is appropriate) so media pops and OLED screens save power — but never pure #000, which smears when scrolling.
+**Color.** Electric magenta is high-arousal and ownable in a category crowded with blue. A dusty orchid secondary keeps selection states in the magenta family, and a violet tertiary is the analogous accent for stories, reactions and live states. Dark mode uses a near-black tinted surface (the one context where it is appropriate) so media pops and OLED screens save power — but never pure #000, which smears when scrolling.
 
 **Typography.** Sora headlines are wide and confident; Be Vietnam Pro body text stays readable in dense comment threads.
 

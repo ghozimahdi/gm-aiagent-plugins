@@ -16,17 +16,17 @@ Open [`preview.html`](preview.html) in a browser to see every token, atom, molec
 
 | Role | Light | Dark |
 | --- | --- | --- |
-| `primary` | `#166A5C` | `#88D5C3` |
+| `primary` | `#166A5C` | `#97D2C4` |
 | `onPrimary` | `#FFFFFF` | `#00382F` |
-| `primaryContainer` | `#A4F1DF` | `#005144` |
-| `secondary` | `#45636C` | `#ACCCD7` |
-| `tertiary` | `#934A2D` | `#FFB59A` |
+| `primaryContainer` | `#C9E9E1` | `#005144` |
+| `secondary` | `#3C665D` | `#AACEC5` |
+| `tertiary` | `#934A2D` | `#FAB79E` |
 | `surface` | `#F2FBF9` | `#0E1513` |
 | `onSurface` | `#161D1B` | `#DCE4E2` |
 | `outline` | `#667B76` | `#809590` |
 | `error` | `#BA1A1A` | `#FFB4AA` |
-| `success` | `#006E29` | `#76DC87` |
-| `warning` | `#8A5100` | `#FFB870` |
+| `success` | `#006E29` | `#8AD895` |
+| `warning` | `#8A5100` | `#F8BA7D` |
 | `info` | `#005DB6` | `#A0CAFF` |
 
 ## Design rationale

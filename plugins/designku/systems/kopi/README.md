@@ -16,22 +16,22 @@ Open [`preview.html`](preview.html) in a browser to see every token, atom, molec
 
 | Role | Light | Dark |
 | --- | --- | --- |
-| `primary` | `#835332` | `#F2BB97` |
+| `primary` | `#835332` | `#EABEA1` |
 | `onPrimary` | `#FFFFFF` | `#502500` |
-| `primaryContainer` | `#FFDCC5` | `#693B1A` |
-| `secondary` | `#566424` | `#BCCE8B` |
-| `tertiary` | `#885200` | `#FFB86B` |
+| `primaryContainer` | `#F7DECD` | `#693B1A` |
+| `secondary` | `#775840` | `#DEC1AC` |
+| `tertiary` | `#885200` | `#F8BB7B` |
 | `surface` | `#FFF8F0` | `#17130C` |
 | `onSurface` | `#201B14` | `#E8E1D9` |
 | `outline` | `#847561` | `#9E8E7A` |
 | `error` | `#B81A42` | `#FFB2B8` |
-| `success` | `#006E29` | `#76DC87` |
-| `warning` | `#8A5100` | `#FFB870` |
+| `success` | `#006E29` | `#8AD895` |
+| `warning` | `#8A5100` | `#F8BA7D` |
 | `info` | `#005DB6` | `#A0CAFF` |
 
 ## Design rationale
 
-**Color.** Roasted-coffee brown is earthy and appetizing and, unlike saturated red or orange, never fights with food photography. Matcha-olive secondary supports fresh and plant-based cues; caramel-saffron tertiary highlights specials. Neutrals are a warm cream (higher chroma, hue 75) instead of clinical white, like paper or linen.
+**Color.** Roasted-coffee brown is earthy and appetizing and, unlike saturated red or orange, never fights with food photography. A muted latte secondary keeps selected and tonal states inside the coffee family; caramel-saffron tertiary highlights specials. Neutrals are a warm cream (higher chroma, hue 75) instead of clinical white, like paper or linen.
 
 **Typography.** Fraunces, a soft old-style serif, gives headlines the feel of a printed menu. DM Sans body keeps prices and options clean and modern.
 

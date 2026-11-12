@@ -45,6 +45,7 @@ only the levels below it. See the `atomic-design` skill for what belongs where.
 | `SizedBox(height: 16)` as a gap | `const DsGap.lg()` |
 | `BorderRadius.circular(8)`, `Radius.circular(12)` | `DsRadius.smAll`, `DsShape.card`, `DsShape.buttonBorder` |
 | `BoxShadow(...)`, `elevation: 4` | `DsShadows.level2`, `DsElevation.level2` |
+| Hand-drawn ink border / hard offset shadow (neo-brutalism) | `DsButton` / `DsCard(variant: elevated)` already apply it; custom widgets use `DsEffect.stroke(context)` and `DsEffect.hardShadow(context)` (empty in dark mode and in material systems) |
 | `Duration(milliseconds: 300)` + `Curves.easeInOut` for UI motion | `DsMotion.slow`, `DsMotion.standardCurve` |
 | `Icon(x, size: 20)` | `Icon(x, size: DsIconSize.sm)` |
 | `ElevatedButton(...)`, `TextField(...)`, ad-hoc `Card` styling in pages | `DsButton`, `DsTextField`, `DsCard`, `DsStatusBadge`, `DsAvatar` |

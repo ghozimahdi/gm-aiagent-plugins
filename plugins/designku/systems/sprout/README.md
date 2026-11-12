@@ -16,22 +16,22 @@ Open [`preview.html`](preview.html) in a browser to see every token, atom, molec
 
 | Role | Light | Dark |
 | --- | --- | --- |
-| `primary` | `#216D00` | `#85DB6E` |
+| `primary` | `#216D00` | `#94D783` |
 | `onPrimary` | `#FFFFFF` | `#0D3900` |
-| `primaryContainer` | `#A0F88A` | `#175200` |
-| `secondary` | `#AD3217` | `#FFB4A3` |
-| `tertiary` | `#795900` | `#F5BE3A` |
+| `primaryContainer` | `#C7EDBD` | `#175200` |
+| `secondary` | `#3F6918` | `#ABD292` |
+| `tertiary` | `#795900` | `#ECC163` |
 | `surface` | `#F9FAF1` | `#13140E` |
 | `onSurface` | `#1C1C16` | `#E2E3DA` |
 | `outline` | `#777864` | `#91927D` |
 | `error` | `#BA1A1A` | `#FFB4AA` |
-| `success` | `#006E29` | `#76DC87` |
-| `warning` | `#8A5100` | `#FFB870` |
+| `success` | `#006E29` | `#8AD895` |
+| `warning` | `#8A5100` | `#F8BA7D` |
 | `info` | `#005DB6` | `#A0CAFF` |
 
 ## Design rationale
 
-**Color.** Leaf green signals growth and 'correct', and is gender-neutral for children. Coral secondary and sunshine yellow tertiary give the multi-color richness kids respond to, while each still gets a full accessible tonal ramp. Because green doubles as success, wrong answers use an error container with an icon and a gentle message rather than a red screen.
+**Color.** Leaf green signals growth and 'correct', and is gender-neutral for children. A softer leaf-green secondary keeps selection and tonal states in the brand family, and a sunshine yellow tertiary supplies the playful accent for stars, streaks and rewards. Because green doubles as success, wrong answers use an error container with an icon and a gentle message rather than a red screen.
 
 **Typography.** Baloo 2 headlines are chunky and friendly. Nunito body has rounded terminals and clearly distinct letterforms (a, g, l, I), which helps early readers.
 

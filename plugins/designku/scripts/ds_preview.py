@@ -15,7 +15,7 @@ from pathlib import Path
 import dslib as L
 import ds_validate
 
-RENDERER_VERSION = "1"
+RENDERER_VERSION = "2"
 
 ICONS = {
     "search": '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
@@ -108,6 +108,7 @@ def css_variables(tokens: dict) -> str:
             decl.append(f"--el-{name[-1]}:{_shadow_css(value, 1.0 if mode == 'light' else 2.6)}")
         decl.append(f"color-scheme:{mode}")
         out.append(f'[data-theme="{mode}"]{{' + ";".join(decl) + "}")
+    out.append(_effect_css(tokens))
     for role, style in L.group_items(tokens, "typography.scale"):
         raw = L.get_path(tokens, f"typography.scale.{role}")["$value"]["fontFamily"]
         var = "display" if "display" in raw else ("mono" if "mono" in raw else "body")
@@ -115,6 +116,34 @@ def css_variables(tokens: dict) -> str:
                    f"font-weight:{style['fontWeight']};line-height:{style['lineHeight']};"
                    f"letter-spacing:{L.fmt_num(L.num(style['letterSpacing']))}px}}")
     return "\n".join(out)
+
+
+def _effect_css(tokens: dict) -> str:
+    """Extra rules for non-material surface styles (tokens.effect)."""
+    try:
+        style = L.tv(tokens, "effect.style")
+    except KeyError:
+        return ""
+    if style != "brutal":
+        return ""
+    stroke = L.fmt_num(L.num(L.tv(tokens, "effect.strokeWidth")))
+    off = L.fmt_num(L.num(L.tv(tokens, "effect.shadowOffset")))
+    in_dark = bool(L.tv(tokens, "effect.shadowInDark"))
+    raised = ".btn--filled,.btn--danger,.iconbtn--filled,.fab,.mark,.card--elevated,.dialog"
+    rules = [
+        f'[data-theme="light"]{{--hard:{off}px {off}px 0 var(--c-onSurface);--stroke:var(--c-onSurface)}}',
+        f'[data-theme="dark"]{{--hard:{f"{off}px {off}px 0 var(--c-onSurface)" if in_dark else "none"};'
+        f'--stroke:{"var(--c-onSurface)" if in_dark else "transparent"}}}',
+        f"{raised}{{border:{stroke}px solid var(--stroke)!important;box-shadow:var(--hard)!important}}",
+        ".btn--filled:not(:disabled),.btn--danger:not(:disabled),.iconbtn--filled,.fab"
+        "{transition:transform var(--dur-fast) var(--ease-standard),box-shadow var(--dur-fast) var(--ease-standard)}",
+        f".btn--filled:not(:disabled):active,.btn--danger:not(:disabled):active,.iconbtn--filled:active,.fab:active"
+        f"{{transform:translate({off}px,{off}px);box-shadow:none!important}}",
+        ".btn--filled:disabled,.btn--danger:disabled{box-shadow:none!important;border-color:transparent!important}",
+        f".field__box:focus-within,.field.is-focus .field__box{{border-color:var(--c-onSurface);box-shadow:none}}",
+        ".chip.is-selected,.segmented button.is-selected{box-shadow:inset 0 0 0 1.5px var(--c-primary)}",
+    ]
+    return "\n".join(rules)
 
 
 BASE_CSS = r"""
