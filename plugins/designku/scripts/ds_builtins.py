@@ -283,7 +283,7 @@ BUILTINS = [
             "rationale": {
                 "color": "Ported from the Cuplikin app. A saturated electric blue primary on an off-white, faintly green 'paper' background, with deep navy 'ink' for text, outlines and shadows instead of pure black, which keeps the brutalist contrast but softens it. Pastel mint, sky, peach and lavender containers act like highlighter marks for tags, credits and status, and the blue stays the only saturated color on screen. Dark mode switches to calm zinc greys and drops the hard shadow, because a light offset shadow on a dark surface looks like a rendering glitch.",
                 "typography": "Jost headlines (geometric, Futura-like, with a poster feel) pair with Mulish body text, which stays highly legible at small sizes in dense editor UIs.",
-                "shape": "Neo-brutalism: primary buttons, the FAB, elevated cards and dialogs get a 1.5px ink outline and a 3px hard shadow with zero blur. Pressing a button moves it into its shadow, so it feels physically pushed. Medium radii (12-16px) keep it friendly rather than raw. Secondary buttons, cards and inputs use thin light borders and no shadow, so the raised treatment always marks the one thing to press.",
+                "shape": "Neo-brutalism: primary buttons, the FAB, elevated cards and dialogs get a 1.5px ink outline and a 3px hard shadow with zero blur. Pressing a button moves it into its shadow, so it feels physically pushed. Medium radii (12-16px) keep it friendly rather than raw. Everyday surfaces follow the app: cards, list groups, the search field and the bottom navigation are white with a 1px light line on the paper background (no grey fills), list thumbnails are solid pastel tiles, and chips are pills with a thin line. Secondary buttons, cards and inputs stay flat, so the raised treatment always marks the one thing to press.",
                 "motion": "Snappy. The press-into-shadow translate is the main motion; everything else stays short.",
             },
             "do": [
@@ -313,14 +313,16 @@ BUILTINS = [
                     "warningContainer": "#FFD2B2", "onWarningContainer": "#6B3A14",
                     "errorContainer": "#FBE6E2",
                     "background": "#F8F9F3", "surface": "#F8F9F3", "surfaceBright": "#F8F9F3",
-                    "surfaceContainerLowest": "#FFFFFF", "surfaceContainerLow": "#F0F2E9",
-                    "surfaceContainer": "#EEF1E7",
+                    "surfaceContainerLowest": "#FFFFFF", "surfaceContainerLow": "#FFFFFF",
+                    "surfaceContainer": "#FFFFFF", "surfaceContainerHigh": "#F0F2E9",
+                    "surfaceContainerHighest": "#E5E8E0", "surfaceVariant": "#EEF1E7",
+                    "onSecondaryContainer": "#1460ED",
                     "onBackground": "#192C42", "onSurface": "#192C42", "onSurfaceVariant": "#526174",
                     "outlineVariant": "#DCE1D9", "inverseSurface": "#192C42",
                 },
                 "dark": {
                     "background": "#141416", "surface": "#141416", "surfaceDim": "#141416",
-                    "surfaceContainerLowest": "#0D0D0F", "surfaceContainerLow": "#18181B",
+                    "surfaceContainerLowest": "#0D0D0F", "surfaceContainerLow": "#1C1C1F",
                     "surfaceContainer": "#1C1C1F", "surfaceContainerHigh": "#28282C",
                     "surfaceContainerHighest": "#323237",
                     "onBackground": "#EDEDF0", "onSurface": "#EDEDF0", "onSurfaceVariant": "#A1A1AA",

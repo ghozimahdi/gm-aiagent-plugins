@@ -15,7 +15,7 @@ from pathlib import Path
 import dslib as L
 import ds_validate
 
-RENDERER_VERSION = "2"
+RENDERER_VERSION = "4"
 
 ICONS = {
     "search": '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
@@ -108,7 +108,6 @@ def css_variables(tokens: dict) -> str:
             decl.append(f"--el-{name[-1]}:{_shadow_css(value, 1.0 if mode == 'light' else 2.6)}")
         decl.append(f"color-scheme:{mode}")
         out.append(f'[data-theme="{mode}"]{{' + ";".join(decl) + "}")
-    out.append(_effect_css(tokens))
     for role, style in L.group_items(tokens, "typography.scale"):
         raw = L.get_path(tokens, f"typography.scale.{role}")["$value"]["fontFamily"]
         var = "display" if "display" in raw else ("mono" if "mono" in raw else "body")
@@ -142,6 +141,16 @@ def _effect_css(tokens: dict) -> str:
         ".btn--filled:disabled,.btn--danger:disabled{box-shadow:none!important;border-color:transparent!important}",
         f".field__box:focus-within,.field.is-focus .field__box{{border-color:var(--c-onSurface);box-shadow:none}}",
         ".chip.is-selected,.segmented button.is-selected{box-shadow:inset 0 0 0 1.5px var(--c-primary)}",
+        # flat, line-separated surfaces (white cards on paper), as in neo-brutal product UIs
+        ".navbar{background:var(--c-surfaceContainerLowest);border-top:1px solid var(--c-outlineVariant)}",
+        ".navbar a.is-active span.pill{color:var(--c-onSecondaryContainer)}",
+        ".searchbar{background:var(--c-surfaceContainerLowest);border:1px solid var(--c-outlineVariant);border-radius:var(--shape-input)}",
+        ".chip:not(.is-selected):not(.chip--tertiary){border-color:var(--c-outlineVariant);background:var(--c-surfaceContainerLowest);color:var(--c-onSurface)}",
+        ".chip.is-selected{border-color:var(--c-primary)}",
+        ".thumb{background:var(--c-tertiaryContainer);color:var(--c-onTertiaryContainer)}",
+        ".thumb--b{background:var(--c-primaryContainer);color:var(--c-onPrimaryContainer)}",
+        ".thumb--c{background:var(--c-warningContainer);color:var(--c-onWarningContainer)}",
+        ".stat,.card:not(.card--filled):not(.card--elevated){background:var(--c-surfaceContainerLowest)}",
     ]
     return "\n".join(rules)
 
@@ -954,7 +963,7 @@ def render(tokens: dict, source: str = "builtin", tokens_text: str | None = None
             f'<title>{e(name)} — designku design system</title>\n'
             f'<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
             f'<link rel="stylesheet" href="{e(font_url)}">\n'
-            f'<style>\n{css_variables(tokens)}\n{BASE_CSS}</style>\n</head>\n<body>\n' + "\n".join(body)
+            f'<style>\n{css_variables(tokens)}\n{BASE_CSS}\n{_effect_css(tokens)}\n</style>\n</head>\n<body>\n' + "\n".join(body)
             + f"\n<script>{SCRIPT}</script>\n</body>\n</html>\n")
 
 

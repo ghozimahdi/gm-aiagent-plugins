@@ -8,7 +8,7 @@
 - **Personality:** bold, honest, playful, crafted
 - **Fonts:** Jost (display) / Mulish (body) / JetBrains Mono (mono)
 - **Shape / density / motion:** soft / comfortable / snappy
-- **Contrast target:** WCAG 2.2 AA — smallest text pair 4.68:1 (light), 4.97:1 (dark)
+- **Contrast target:** WCAG 2.2 AA — smallest text pair 4.70:1 (light), 4.97:1 (dark)
 
 Open [`preview.html`](preview.html) in a browser to see every token, atom, molecule, organism, template and page.
 
@@ -35,7 +35,7 @@ Open [`preview.html`](preview.html) in a browser to see every token, atom, molec
 
 **Typography.** Jost headlines (geometric, Futura-like, with a poster feel) pair with Mulish body text, which stays highly legible at small sizes in dense editor UIs.
 
-**Shape and density.** Neo-brutalism: primary buttons, the FAB, elevated cards and dialogs get a 1.5px ink outline and a 3px hard shadow with zero blur. Pressing a button moves it into its shadow, so it feels physically pushed. Medium radii (12-16px) keep it friendly rather than raw. Secondary buttons, cards and inputs use thin light borders and no shadow, so the raised treatment always marks the one thing to press.
+**Shape and density.** Neo-brutalism: primary buttons, the FAB, elevated cards and dialogs get a 1.5px ink outline and a 3px hard shadow with zero blur. Pressing a button moves it into its shadow, so it feels physically pushed. Medium radii (12-16px) keep it friendly rather than raw. Everyday surfaces follow the app: cards, list groups, the search field and the bottom navigation are white with a 1px light line on the paper background (no grey fills), list thumbnails are solid pastel tiles, and chips are pills with a thin line. Secondary buttons, cards and inputs stay flat, so the raised treatment always marks the one thing to press.
 
 **Motion.** Snappy. The press-into-shadow translate is the main motion; everything else stays short.
 
