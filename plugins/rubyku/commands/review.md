@@ -8,29 +8,15 @@ Review code for architecture violations and guideline compliance.
 
 Arguments: $ARGUMENTS (file path, directory, or feature name)
 
-## Step 0: Initialize Serena + Read docs
+## Step 0: Read docs
 
-### 0a. Initialize Serena LSP
-
-**ALWAYS** call `mcp__serena__initial_instructions` first, then `mcp__serena__activate_project`. Use Serena tools throughout the review.
-
-### 0b. Read plugin docs
+### 0a. Read plugin docs
 
 Read from `${CLAUDE_PLUGIN_ROOT}/docs/` (resolve via `echo $CLAUDE_PLUGIN_ROOT`):
 - `ARCHITECTURE.md`, `CODE_OF_CONDUCT.md`, `NAMING_CONVENTIONS.md`, `HOTWIRE.md`, `ROUTES_POLICY.md`
 
 Also read the project's guidelines from `docs/guidelines/`:
 - `CODE_OF_CONDUCT.md`, `NAMING_RULES.md`, `ROUTES_POLICY.md`, `HOTWIRE.md`, `ERROR_HANDLING.md`, `HELPERS.md`, `STIMULUS_CONTROLLERS.md`
-
-### Serena Usage During Review
-
-**ALWAYS prefer Serena tools for code review:**
-
-- `mcp__serena__get_symbols_overview` — review file structure, detect display logic in models
-- `mcp__serena__find_symbol` — find classes (check for service classes, helper modules)
-- `mcp__serena__find_referencing_symbols` — verify associations, check dependencies
-- `mcp__serena__find_implementations` — check concern implementations
-- `mcp__serena__get_diagnostics_for_file` — check for errors/warnings in reviewed files
 
 ## Checks
 

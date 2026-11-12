@@ -65,7 +65,6 @@ Workflow skills (action — migrated from `commands/*.md`, invoked explicitly):
 | `ship`              | Tests + review + commit + PR                                      |
 | `review`            | Audit codebase for architecture violations                        |
 | `write-test`        | Write tests for a feature or file                                 |
-| `serena-refresh`    | Rebuild Serena's project-specific semantic index                  |
 | `keep-alive`        | Prevent macOS from auto-sleeping (toggle on/off/status)           |
 
 ### Claude-only RTK Commands
@@ -83,13 +82,11 @@ commands-to-skills migration and have no Codex equivalent:
 
 - **Pre-commit**: Auto-runs `fvm dart fix --apply` + `fvm dart format` + `fvm dart analyze` before every git commit
 - **Post-edit**: Reminds to analyze after editing .dart files
-- **Serena lifecycle**: Activates the current project and keeps its index in sync in both clients
 - **Claude SessionStart**: Auto-installs and initializes [rtk-ai/rtk](https://github.com/rtk-ai/rtk). The installer intentionally skips Codex because RTK configures Claude's global Bash hook.
 
 ### MCP Servers
 
 - **Dart & Flutter MCP Server**: pub.dev search, error analysis, dependency management
-- **Serena**: LSP intelligence — go-to-definition, find references, symbols
 
 ### Claude Code LSP Server
 
@@ -159,10 +156,6 @@ definitions are also usable as role guidance by orchestration skills, although
 they are not registered as named Codex agents. Claude's Dart LSP configuration
 and RTK global-hook commands remain Claude-only.
 
-UFIL keeps client-specific MCP launch settings: `.mcp.json` uses Serena's
-`claude-code` context, while the native Codex manifest embeds its `codex`
-context and resolves the project from Codex's working directory.
-
 ### Claude Code
 
 ```bash
@@ -209,7 +202,6 @@ This plugin **auto-detects all versions** at project creation time — zero hard
 - **FVM** (required) — `dart pub global activate fvm`, then `fvm install <version> && fvm global <version>`
 - Dart SDK 3.6+ (for pub workspaces / melos 7.x)
 - Flutter SDK managed through FVM
-- Serena (`pip install serena` or `uvx serena`) — for LSP intelligence
 - **RTK** (optional, Claude Code only) — auto-installed on first Claude session
 
 ## Contributing

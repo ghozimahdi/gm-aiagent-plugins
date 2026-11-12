@@ -1,6 +1,6 @@
 # Rubyku Plugin
 
-A Rails 8 development plugin for Claude Code that enforces the Rails Way: thin controllers, fat models with concerns, Hotwire-first frontend, and Serena LSP for Ruby code intelligence.
+A Rails 8 development plugin for Claude Code that enforces the Rails Way: thin controllers, fat models with concerns, and a Hotwire-first frontend.
 
 ## What's Included
 
@@ -8,7 +8,6 @@ A Rails 8 development plugin for Claude Code that enforces the Rails Way: thin c
 - **8 Skills**: rails-way, hotwire, turbo, stimulus, testing, naming-conventions, concerns-pattern, ai-agents
 - **13 Commands**: plan, implement, implement-batch, commit, create-pr, check, test, fix-tests, review, ship, generate-migration, github-issue, resolve-conflicts
 - **Hooks**: Auto rubocop + guideline validation before git commit
-- **MCP Servers**: Serena LSP for Ruby code intelligence
 - **.claudeignore**: Template for Rails projects
 
 ## Architecture
@@ -38,24 +37,6 @@ This plugin assumes your Rails app organizes role-based screens under per-role U
 | API | `/api` | `Api::ApplicationController` |
 
 Customize namespaces to match your app — the plugin's rules ("new screen = new controller", "RESTful resources only") are namespace-agnostic.
-
-## Serena LSP — ALWAYS USE
-
-**Before starting any coding task**, initialize Serena:
-1. Call `mcp__serena__initial_instructions` to load Serena manual
-2. Call `mcp__serena__activate_project` to activate the project
-
-**ALWAYS prefer Serena tools over Grep/Glob/Read for code navigation:**
-
-| Task | Use Serena | NOT |
-|------|-----------|-----|
-| Find class/method | `find_symbol` | Grep |
-| Go to definition | `find_declaration` | Read + search |
-| Find callers | `find_referencing_symbols` | Grep |
-| File structure | `get_symbols_overview` | Read entire file |
-| Check errors | `get_diagnostics_for_file` | rubocop |
-| Safe rename | `rename_symbol` | Find & replace |
-| Edit method | `replace_symbol_body` | Manual edit |
 
 ## Standards
 

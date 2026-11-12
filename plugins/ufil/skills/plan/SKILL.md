@@ -16,28 +16,14 @@ Analyze a GitHub issue/ticket and create a detailed Flutter implementation plan 
 
 Arguments: <requested arguments> (GitHub issue ID, e.g., `123` or `issues/123`)
 
-## Step 0: Initialize Serena + Read docs (MANDATORY)
+## Step 0: Read docs (MANDATORY)
 
-### 0a. Initialize Serena (auto-onboard if needed)
-
-Run in order:
-
-1. Call `mcp__serena__initial_instructions` — load Serena's instructions manual.
-2. Call `mcp__serena__check_onboarding_performed` — check whether this project has been onboarded.
-3. **If not onboarded:**
-   - Probe for analyzable code: `find . -maxdepth 3 -type f -name '*.dart' -not -path '*/.*' | head -1`
-   - If a Dart file is found → call `mcp__serena__onboarding` to build the symbol index and project memories (one-time cost per project).
-   - If empty → SKIP onboarding, fall back to built-in search and read tools. Inform the user: "Serena onboarding skipped — no Dart code detected. Will auto-run the next time the plan or implement workflow is invoked after code exists."
-4. **If already onboarded:** proceed.
-
-Use Serena tools throughout planning for code exploration and symbol lookup. To force re-onboarding after a major refactor, invoke the `serena-refresh` skill.
-
-### 0b. Project Type Detection
+### 0a. Project Type Detection
 
 - **Modular**: `packages/` directory exists at project root → multi-package project with melos
 - **Single-module**: No `packages/` directory → single `lib/` project
 
-### 0c. Read plugin docs
+### 0b. Read plugin docs
 
 Read from `${UFIL_ROOT}/docs/`:
 
@@ -52,23 +38,6 @@ Read from `${UFIL_ROOT}/docs/`:
 Also read relevant project guidelines from `docs/` in the working directory (if present).
 
 Do NOT proceed until docs are read.
-
-### Serena Usage During Planning
-
-**ALWAYS prefer Serena tools over Grep/Glob/Read for exploring the codebase:**
-
-- `mcp__serena__find_symbol` — find existing classes (`{Name}Model`, `{Action}UseCase`, `{Feature}Bloc`, …)
-- `mcp__serena__find_declaration` — go to definition of a symbol
-- `mcp__serena__find_referencing_symbols` — find all usages of a usecase/model/bloc
-- `mcp__serena__find_implementations` — find implementations of a repository contract
-- `mcp__serena__get_symbols_overview` — understand structure of a file (bloc events/states, repo methods)
-- `mcp__serena__get_diagnostics_for_file` — check existing errors
-
-Use these to:
-- Locate existing models, DTOs, mappers, repos, usecases, blocs that the feature touches
-- Trace bloc → usecase → repo → datasource dependencies
-- Identify existing routes in `app_router.dart` and DI registrations in `injector.dart` / per-package `di.dart`
-- For modular projects: identify which packages (`domain_*`, `data_*`, `feature_*`) are affected
 
 ## Steps
 
@@ -194,7 +163,7 @@ The plan MUST follow this structure:
 
 ### Existing Code Context
 
-<Key findings from Serena-based exploration — existing models, blocs, repos that this feature relates to or reuses>
+<Key findings from codebase exploration — existing models, blocs, repos that this feature relates to or reuses>
 
 ### Dependencies
 
@@ -306,7 +275,7 @@ single-agent vs team mode (per config/team-config.json).
 ## Important Rules
 
 - **DO NOT write any implementation code** — this is planning only
-- **DO explore the codebase thoroughly with Serena** — the plan must be grounded in real symbols/files
+- **DO explore the codebase thoroughly** (Dart LSP, Grep, Glob, Read) — the plan must be grounded in real symbols/files
 - **DO check naming conventions** — class/file suffixes (`UseCase`, `DataSource`, `Mapper`, `Bloc`, …) must follow project standards
 - **DO identify ALL affected packages** (modular) or feature folders (single-module)
 - **Pages MUST NOT call UseCases directly** — every async action goes through a Bloc, even one-shot ops like logout/refresh/delete

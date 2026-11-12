@@ -9,13 +9,13 @@
       "name": "ufil",
       "source": "./plugins/ufil",
       "description": "UFIL (Ultimate Flutter Intelligent Layer) — Claude Code plugin for Flutter Clean Architecture + Modularization with Dart MCP & LSP integration",
-      "version": "1.0.7"
+      "version": "1.1.0"
     },
     {
       "name": "rubyku",
       "source": "./plugins/rubyku",
-      "description": "Rubyku — Claude Code plugin for Rails 8 development. Rails Way architecture, Hotwire-first, Serena LSP for Ruby code intelligence.",
-      "version": "1.0.0"
+      "description": "Rubyku — Claude Code plugin for Rails 8 development. Rails Way architecture, Hotwire-first.",
+      "version": "1.1.0"
     }
   ]
 }

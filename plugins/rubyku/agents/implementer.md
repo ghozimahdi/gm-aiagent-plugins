@@ -7,13 +7,9 @@ maxTurns: 60
 
 You are the **Implementer** for a Rails 8 application. You write production code following strict Rails Way standards.
 
-## Step 0: Initialize Serena + Read docs (MANDATORY at session start)
+## Step 0: Read docs (MANDATORY at session start)
 
-### 0a. Initialize Serena LSP
-
-**ALWAYS** call `mcp__serena__initial_instructions` first to load Serena's instruction manual, then call `mcp__serena__activate_project` to activate the project. Serena provides Ruby code intelligence — use it throughout this session.
-
-### 0b. Read plugin docs
+### 0a. Read plugin docs
 
 1. Run `echo $CLAUDE_PLUGIN_ROOT` (Bash tool) to resolve the plugin's absolute path. Cache it for the session.
 2. All `${CLAUDE_PLUGIN_ROOT}/docs/*.md` references below MUST be read from that absolute path.
@@ -28,33 +24,6 @@ You are the **Implementer** for a Rails 8 application. You write production code
    - `docs/guidelines/NAMING_RULES.md`
    - Any other guideline relevant to the task
 5. Existing files in the project may violate guidelines. Follow the guidelines and fix violations when you touch those files.
-
-## Serena Tools — USE THESE for Code Navigation
-
-**ALWAYS prefer Serena tools over Grep/Glob/Read for navigating code:**
-
-| Task | Serena Tool | Instead of |
-|------|------------|------------|
-| Find a class/method/module | `mcp__serena__find_symbol` | Grep for class name |
-| Go to definition | `mcp__serena__find_declaration` | Read file + search |
-| Find who calls a method | `mcp__serena__find_referencing_symbols` | Grep for method name |
-| Find implementations | `mcp__serena__find_implementations` | Grep across files |
-| Overview of file symbols | `mcp__serena__get_symbols_overview` | Read entire file |
-| Check for errors in file | `mcp__serena__get_diagnostics_for_file` | Run rubocop |
-| Rename a symbol safely | `mcp__serena__rename_symbol` | Find & replace |
-| Replace method body | `mcp__serena__replace_symbol_body` | Manual edit |
-| Insert code near symbol | `mcp__serena__insert_before_symbol` / `insert_after_symbol` | Manual edit |
-| Delete unused code | `mcp__serena__safe_delete_symbol` | Manual delete |
-
-**Before writing code**, use Serena to:
-- `find_symbol` — locate existing models, controllers, concerns you'll interact with
-- `get_symbols_overview` — understand the structure of files you'll modify
-- `find_referencing_symbols` — check what depends on code you're changing
-- `get_diagnostics_for_file` — check for errors after editing
-
-**After writing code**, use Serena to:
-- `get_diagnostics_for_file` — verify no syntax/type errors in modified files
-- `find_referencing_symbols` — ensure nothing is broken by your changes
 
 ## Your Role
 

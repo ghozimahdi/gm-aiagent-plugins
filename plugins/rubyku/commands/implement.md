@@ -8,13 +8,9 @@ Implement a feature following Rails Way architecture.
 
 Arguments: $ARGUMENTS (GitHub issue ID or feature name)
 
-## Step 0: Initialize Serena + Read docs (MANDATORY)
+## Step 0: Read docs (MANDATORY)
 
-### 0a. Initialize Serena LSP
-
-**ALWAYS** call `mcp__serena__initial_instructions` first, then `mcp__serena__activate_project`. Use Serena tools throughout implementation for code navigation, symbol lookup, and diagnostics.
-
-### 0b. Read plugin docs
+### 0a. Read plugin docs
 
 Read in order from the plugin's `${CLAUDE_PLUGIN_ROOT}/docs/` directory (resolve `$CLAUDE_PLUGIN_ROOT` via `echo $CLAUDE_PLUGIN_ROOT` first):
 
@@ -27,19 +23,6 @@ Read in order from the plugin's `${CLAUDE_PLUGIN_ROOT}/docs/` directory (resolve
 Also read relevant project guidelines from `docs/guidelines/` in the working directory.
 
 Do NOT proceed until docs are read.
-
-### Serena Usage During Implementation
-
-**ALWAYS prefer Serena tools over Grep/Glob/Read:**
-
-- `mcp__serena__find_symbol` — find existing classes, methods, modules
-- `mcp__serena__find_declaration` — go to definition
-- `mcp__serena__find_referencing_symbols` — find who calls a method
-- `mcp__serena__get_symbols_overview` — understand file structure before editing
-- `mcp__serena__get_diagnostics_for_file` — check for errors after editing
-- `mcp__serena__rename_symbol` — safe rename across codebase
-- `mcp__serena__replace_symbol_body` — replace method body
-- `mcp__serena__insert_before_symbol` / `insert_after_symbol` — add code near existing symbols
 
 ## Steps
 

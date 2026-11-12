@@ -2,20 +2,9 @@
 
 Welcome. This wiki is the home for **cross-cutting documentation** that doesn't belong to any single plugin — tools, integrations, and conventions used by `ufil`, `rubyku`, and future plugins in this repository.
 
-Plugin-specific docs (commands, agents, skills, hooks) stay inside each plugin folder. Anything shared — Serena MCP, RTK, Dart MCP, hook conventions, marketplace mechanics — lives here.
+Plugin-specific docs (commands, agents, skills, hooks) stay inside each plugin folder. Anything shared — RTK, Dart MCP, hook conventions, marketplace mechanics — lives here.
 
 ## Topics
-
-### 🔍 Serena MCP
-
-LSP-grade code navigation (find symbol, references, rename, etc.) for Claude Code. Used by both UFIL and Rubyku.
-
-- [Serena — Overview](Serena-MCP)
-- [Installation](Installation)
-- [Configuration](Configuration)
-- [Tools Reference](Tools-Reference)
-- [Usage in Plugins](Usage-in-Plugins)
-- [Troubleshooting](Troubleshooting)
 
 ### ⚡ RTK (Rust Token Killer)
 
@@ -29,7 +18,7 @@ Token-saving CLI proxy that intercepts `git`, `flutter`, `dart`, `melos`, etc. a
 
 ### 🎯 Dart MCP — *coming soon*
 
-Dart-native MCP server bundled with UFIL alongside Serena. Handles pub, build_runner, melos, and Flutter-specific analysis.
+Dart-native MCP server bundled with UFIL. Handles pub, build_runner, melos, and Flutter-specific analysis.
 
 ### 🪝 Hook conventions — *coming soon*
 

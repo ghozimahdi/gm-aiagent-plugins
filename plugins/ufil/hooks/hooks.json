@@ -9,33 +9,6 @@
             "command": "${CLAUDE_PLUGIN_ROOT}/scripts/pre-tool-use.sh"
           }
         ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/serena-hook.sh remind"
-          }
-        ]
-      },
-      {
-        "matcher": "mcp__serena__.*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/serena-hook.sh auto-approve"
-          }
-        ]
-      },
-      {
-        "matcher": "Read|Grep|Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/enforce-serena.sh"
-          }
-        ]
       }
     ],
     "PostToolUse": [
@@ -55,22 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/install-serena.sh && ${CLAUDE_PLUGIN_ROOT}/scripts/serena-hook.sh activate"
-          },
-          {
-            "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/scripts/install-rtk.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/serena-hook.sh cleanup"
           }
         ]
       }

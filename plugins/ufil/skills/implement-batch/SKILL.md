@@ -16,20 +16,6 @@ Implement multiple features in parallel using auto-scaled agents.
 
 Arguments: <requested arguments> (space-separated feature names or ticket IDs)
 
-## Step -1: Initialize Serena (auto-onboard if needed)
-
-Run in order at session start, BEFORE spawning any agents:
-
-1. Call `mcp__serena__initial_instructions`.
-2. Call `mcp__serena__check_onboarding_performed`.
-3. **If not onboarded:**
-   - Probe for code: `find . -maxdepth 3 -type f -name '*.dart' -not -path '*/.*' | head -1`
-   - If a Dart file is found → call `mcp__serena__onboarding` (one-time per project).
-   - If empty → SKIP onboarding; tell the user: "Serena onboarding skipped — no Dart code detected. Will auto-run on the next implement-batch workflow once code exists." Subagents will fall back to built-in search and read tools.
-4. **If already onboarded:** proceed.
-
-Onboarding must happen BEFORE parallel agents spawn so they inherit a ready symbol index instead of racing to onboard concurrently. To force re-onboarding, invoke the `serena-refresh` skill.
-
 ## Project Type Detection (MUST DO FIRST)
 
 - **Modular**: `packages/` directory exists → multi-package project with melos

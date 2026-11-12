@@ -1,6 +1,6 @@
 # Rubyku — Rails Plugin for Claude Code
 
-A Claude Code plugin for **Rails 8** development that enforces Rails Way architecture, a Hotwire-first frontend, and uses Serena LSP for Ruby code intelligence.
+A Claude Code plugin for **Rails 8** development that enforces Rails Way architecture and a Hotwire-first frontend.
 
 ## Features
 
@@ -47,14 +47,12 @@ A Claude Code plugin for **Rails 8** development that enforces Rails Way archite
 
 - **Pre-commit**: Auto-run RuboCop on staged `.rb` files
 - **Post-edit**: Guideline reviewer checks compliance on Write/Edit
-- **Serena**: Auto-approve Serena LSP operations
 
 ## Requirements
 
 - Ruby on Rails 8 project
 - `bundle`, `bin/rails` available in PATH
 - `gh` CLI authenticated (for issue/PR commands)
-- `uvx` installed (for Serena MCP server) — see https://github.com/oraios/serena
 
 ## Installation
 
