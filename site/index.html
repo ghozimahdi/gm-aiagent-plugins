@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GM AI Agent Plugins</title>
+<meta name="description" content="Claude Code and Codex plugins that make AI agents write correct code: Flutter Clean Architecture (UFIL), Rails 8 (Rubyku) and accessible design systems (designku).">
+<meta property="og:title" content="GM AI Agent Plugins">
+<meta property="og:description" content="Standards-first Claude Code and Codex plugins for mobile, web and backend development.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='14' fill='%23192C42'/%3E%3Crect x='2' y='2' width='52' height='52' rx='14' fill='%231460ED' stroke='%23192C42' stroke-width='3'/%3E%3Ctext x='28' y='38' font-family='Arial' font-weight='700' font-size='22' fill='white' text-anchor='middle'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Mulish:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F9F3;--surface:#FFFFFF;--soft:#F0F2E9;--ink:#192C42;--muted:#526174;--line:#DCE1D9;
+  --blue:#1460ED;--blue-ink:#FFFFFF;--sky:#E8F1FF;--mint:#D3F7AC;--mint-ink:#1D4B19;--peach:#FFD2B2;--peach-ink:#6B3A14;
+  --lav:#E6DDFF;--lav-ink:#5E4283;--link:#1460ED;--hard:3px 3px 0 var(--ink);--stroke:var(--ink);
+  --display:Jost,system-ui,sans-serif;--body:Mulish,system-ui,-apple-system,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#141416;--surface:#1C1C1F;--soft:#18181B;--ink:#EDEDF0;--muted:#A1A1AA;--line:#303034;
+  --blue:#A8C8FF;--blue-ink:#00297A;--sky:#263249;--mint:#29352D;--mint-ink:#B9E59A;--peach:#3B302A;--peach-ink:#F0C4A0;
+  --lav:#322F40;--lav-ink:#C4ACD9;--link:#91B7EF;--hard:none;--stroke:transparent;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141416;--surface:#1C1C1F;--soft:#18181B;--ink:#EDEDF0;--muted:#A1A1AA;--line:#303034;
+  --blue:#A8C8FF;--blue-ink:#00297A;--sky:#263249;--mint:#29352D;--mint-ink:#B9E59A;--peach:#3B302A;--peach-ink:#F0C4A0;
+  --lav:#322F40;--lav-ink:#C4ACD9;--link:#91B7EF;--hard:none;--stroke:transparent;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,p{margin:0}
+a{color:var(--link)}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+@media(max-width:600px){.wrap{padding:0 16px}}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--link);display:inline-flex;align-items:center;gap:8px}
+.eyebrow.tag{background:var(--sky);border:1px solid var(--line);padding:7px 10px;border-radius:6px}
+h1{font:700 clamp(40px,6.4vw,72px)/1.02 var(--display);letter-spacing:-1.5px}
+h2{font:700 clamp(30px,4vw,44px)/1.1 var(--display);letter-spacing:-.8px}
+h3{font:700 22px/1.2 var(--display)}
+.lead{color:var(--muted);font-size:18px;max-width:560px}
+.hl{color:var(--link);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px;text-decoration-color:color-mix(in srgb,var(--link) 35%,transparent)}
+code,.mono{font-family:var(--mono)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font:700 20px var(--display);color:var(--ink);text-decoration:none}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--blue);color:var(--blue-ink);display:grid;place-items:center;font:700 14px var(--display);border:1.5px solid var(--stroke);box-shadow:2px 2px 0 var(--stroke)}
+.nav nav{display:flex;gap:22px;margin-left:auto}
+.nav nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:14px}
+.nav nav a:hover{color:var(--link)}
+.iconbtn{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+@media(max-width:820px){.nav nav{display:none}.nav .spacer{margin-left:auto}}
+@media(max-width:600px){.hero .ctas .btn{flex:1 1 100%;justify-content:center}.block__head{margin-bottom:28px}section.block{padding:64px 0}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 20px;border-radius:12px;font:800 15px/1 var(--body);text-decoration:none;cursor:pointer;border:1.5px solid var(--stroke);transition:transform .08s,box-shadow .08s}
+.btn--primary{background:var(--blue);color:var(--blue-ink);box-shadow:var(--hard)}
+.btn--primary:active{transform:translate(3px,3px);box-shadow:none}
+.btn--ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.btn--ghost:hover{border-color:var(--ink)}
+
+/* hero */
+.hero{padding:72px 0 56px}
+.hero .wrap>*{min-width:0}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{margin:20px 0 22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.hero .note{margin-top:18px;color:var(--muted);font-size:13px}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:40px}.hero{padding:48px 0 40px}}
+
+.term{background:var(--surface);border:1.5px solid var(--ink);border-radius:16px;box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+:root[data-theme="dark"] .term{box-shadow:none;border-color:var(--line)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .term{box-shadow:none;border-color:var(--line)}}
+.term__bar{display:flex;align-items:center;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line);font:600 11px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+.term__bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.term__bar i:nth-child(1){background:#F28B82}.term__bar i:nth-child(2){background:#FDD663}.term__bar i:nth-child(3){background:#81C995}
+.term__bar span{margin-left:auto}
+.term pre{margin:0;padding:20px 20px 24px;font:13.5px/1.75 var(--mono);white-space:pre-wrap;word-break:break-word;color:var(--ink)}
+.term .c{color:var(--muted)}.term .p{color:var(--link);font-weight:600}.term .ok{color:var(--mint-ink);background:var(--mint);padding:1px 6px;border-radius:4px}
+
+/* marquee band */
+.band{background:#192C42;color:#F8F9F3;overflow:hidden;white-space:nowrap;border-block:1.5px solid #192C42}
+.band__track{display:inline-flex;gap:40px;padding:16px 0;animation:scroll 32s linear infinite;font:600 13px var(--mono);letter-spacing:2px;text-transform:uppercase}
+.band__track span::after{content:"✦";margin-left:40px;color:#D3F7AC}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.band__track{animation:none}}
+
+section.block{padding:88px 0}
+.block__head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.block__head p{color:var(--muted);max-width:460px}
+.block__head h2{margin-top:14px}
+
+/* plugin cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.pcard{background:var(--surface);border:1.5px solid var(--stroke);border-radius:16px;padding:26px;box-shadow:var(--hard);display:flex;flex-direction:column;gap:14px}
+:root[data-theme="dark"] .pcard,.pcard.soon{border-color:var(--line)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pcard{border-color:var(--line)}}
+.pcard.soon{box-shadow:none;background:transparent;border-style:dashed}
+.pcard__top{display:flex;align-items:center;gap:14px}
+.tile{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;border:1.5px solid var(--stroke);flex:none}
+.tile.mint{background:var(--mint);color:var(--mint-ink)}.tile.peach{background:var(--peach);color:var(--peach-ink)}.tile.lav{background:var(--lav);color:var(--lav-ink)}.tile.sky{background:var(--sky);color:var(--link)}
+.pcard h3{font-size:24px}
+.pcard .plat{font:600 11px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+.pcard p{color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.chip{font:700 12px var(--body);padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.chip.new{background:var(--mint);color:var(--mint-ink);border-color:transparent}
+.pcard .more{font-weight:800;font-size:14px;text-decoration:none}
+.soonrow{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+@media(max-width:900px){.soonrow{grid-template-columns:1fr}}
+.soon{padding:18px 22px;border:1.5px dashed var(--line);border-radius:14px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.soon b{color:var(--ink)}
+
+/* why */
+.why{background:var(--sky)}
+.why__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+@media(max-width:1000px){.why__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.why__grid{grid-template-columns:1fr}}
+.why__item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.why__item .n{font:600 12px var(--mono);color:var(--link);letter-spacing:1px}
+.why__item h3{font-size:18px;margin:10px 0 6px}
+.why__item p{color:var(--muted);font-size:14px}
+
+/* design systems */
+.ds{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.ds{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.ds{grid-template-columns:1fr}}
+.dscard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;color:var(--ink);text-decoration:none;transition:transform .12s,box-shadow .12s,border-color .12s}
+.dscard:hover,.dscard:focus-visible{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);border-color:var(--ink);outline:none}
+.dscard__sw{display:flex;height:64px}
+.dscard__sw i{flex:1}
+.dscard__sw i:first-child{flex:2.2}
+.dscard__body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.dscard__row{display:flex;align-items:center;gap:10px}
+.dscard__letter{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font:700 13px var(--display);color:#fff}
+.dscard__name{font:700 19px var(--display)}
+.dscard__fonts{margin-left:auto;font:600 11px var(--mono);color:var(--muted);text-align:right}
+.dscard__ctx{color:var(--muted);font-size:13.5px;line-height:1.45}
+.dscard__open{margin-top:6px;font-weight:800;font-size:13px;color:var(--link)}
+.badge-brutal{font:700 10px var(--mono);letter-spacing:1px;background:var(--peach);color:var(--peach-ink);padding:3px 7px;border-radius:5px}
+.ds__cmds{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.ds__cmds code{background:var(--surface);border:1px solid var(--line);padding:7px 11px;border-radius:8px;font-size:13px}
+
+/* install */
+.install{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:900px){.install{grid-template-columns:1fr}}
+.icard{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px}
+.icard h3{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.step{margin-top:14px}
+.step small{display:block;color:var(--muted);font-weight:700;font-size:12px;margin-bottom:6px}
+.cmd{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 10px 10px 14px}
+.cmd code{flex:1;min-width:0;font-size:13.5px;overflow-x:auto;white-space:nowrap}
+.copy{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:6px 10px;font:700 12px var(--body);cursor:pointer;flex:none}
+.copy.done{background:var(--mint);color:var(--mint-ink);border-color:transparent}
+
+/* support */
+.support{background:var(--soft);border-top:1px solid var(--line)}
+.support .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+@media(max-width:900px){.support .wrap{grid-template-columns:1fr}}
+.support ul{color:var(--muted);padding-left:20px;margin:16px 0 24px}
+.support .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.qris{background:var(--surface);border:1.5px solid var(--stroke);border-radius:18px;padding:14px;box-shadow:var(--hard);max-width:250px;justify-self:center;text-align:center}
+.qris img{border-radius:10px;display:block}
+.qris p{font-size:12px;color:var(--muted);margin-top:10px}
+
+footer{padding:36px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+footer a{color:var(--ink);font-weight:700;text-decoration:none;margin-left:18px}
+footer a:first-child{margin-left:0}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark">GM</span>GM Plugins</a>
+    <nav aria-label="Sections">
+      <a href="#plugins">Plugins</a>
+      <a href="#designku">Design systems</a>
+      <a href="#install">Install</a>
+      <a href="#support">Support</a>
+      <a href="https://github.com/ghozimahdi/gm-aiagent-plugins">GitHub</a>
+    </nav>
+    <span class="spacer"></span>
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle dark mode">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow tag">Claude Code · Codex plugins</span>
+      <h1>Agents that write <span class="hl">correct</span> code.</h1>
+      <p class="lead">Opinionated plugins for mobile, web and backend. Clean architecture, naming rules, design tokens and review agents are built in, so AI follows your standards instead of guessing.</p>
+      <div class="ctas">
+        <a class="btn btn--primary" href="#install">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Install the marketplace
+        </a>
+        <a class="btn btn--ghost" href="https://github.com/ghozimahdi/gm-aiagent-plugins">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <p class="note">MIT licensed · works in Claude Code and Codex · Flutter, Rails and design systems today</p>
+    </div>
+    <div class="term" role="img" aria-label="Terminal: adding the marketplace and installing plugins">
+      <div class="term__bar"><i></i><i></i><i></i><span>claude code</span></div>
+<pre><span class="c"># one time</span>
+<span class="p">&gt;</span> /plugin marketplace add ghozimahdi/gm-aiagent-plugins
+
+<span class="c"># pick what your stack needs</span>
+<span class="p">&gt;</span> /plugin install ufil@gm-aiagent-plugins
+<span class="p">&gt;</span> /plugin install designku@gm-aiagent-plugins
+
+<span class="p">&gt;</span> /designku:ds-list
+  A aegis   Fintech       #1F54D2
+  I tinta   Creator tools #1460ED
+  <span class="ok">✓ 9 systems · WCAG 2.2 AA</span>
+
+<span class="p">&gt;</span> /ufil:implement "login with OTP"</pre>
+    </div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"><div class="band__track">
+  <span>Clean architecture</span><span>Design tokens</span><span>Review agents</span><span>Quality gates</span><span>Hooks</span><span>Conventions</span><span>Accessibility</span><span>Modularization</span>
+  <span>Clean architecture</span><span>Design tokens</span><span>Review agents</span><span>Quality gates</span><span>Hooks</span><span>Conventions</span><span>Accessibility</span><span>Modularization</span>
+</div></div>
+
+<section class="block" id="plugins">
+  <div class="wrap">
+    <div class="block__head">
+      <div><span class="eyebrow">Available plugins</span><h2>Pick your stack.</h2></div>
+      <p>Each plugin ships skills, agents and hooks for one platform, so every project starts and stays on the right track.</p>
+    </div>
+    <div class="grid">
+      <article class="pcard">
+        <div class="pcard__top">
+          <span class="tile sky"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 5 12l3 3 9-9zM8 15l3 3 6-6"/></svg></span>
+          <div><div class="plat">Flutter / Dart</div><h3>UFIL</h3></div>
+        </div>
+        <p>Ultimate Flutter Intelligent Layer. Clean Architecture and modularization (melos or single module) with Dart MCP and LSP integration, plus architect, implementer and reviewer agents.</p>
+        <div class="chips"><span class="chip">24 skills</span><span class="chip">3 agents</span><span class="chip">BLoC · freezed · injectable</span></div>
+        <a class="more" href="https://github.com/ghozimahdi/gm-aiagent-plugins/tree/main/plugins/ufil">Read the docs →</a>
+      </article>
+      <article class="pcard">
+        <div class="pcard__top">
+          <span class="tile peach"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21 8 9l4-6 4 6z"/></svg></span>
+          <div><div class="plat">Ruby / Rails 8</div><h3>Rubyku</h3></div>
+        </div>
+        <p>The Rails Way, enforced. Hotwire-first frontend, concerns over services, Minitest, RuboCop and Brakeman gates, and agents that plan, implement and review.</p>
+        <div class="chips"><span class="chip">13 commands</span><span class="chip">8 skills</span><span class="chip">Turbo · Stimulus</span></div>
+        <a class="more" href="https://github.com/ghozimahdi/gm-aiagent-plugins/tree/main/plugins/rubyku">Read the docs →</a>
+      </article>
+      <article class="pcard">
+        <div class="pcard__top">
+          <span class="tile mint"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="2"/><circle cx="17.5" cy="10.5" r="2"/><circle cx="8.5" cy="7.5" r="2"/><circle cx="6.5" cy="12.5" r="2"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.3A5.7 5.7 0 0 0 22 9.7C22 5.5 17.5 2 12 2z"/></svg></span>
+          <div><div class="plat">Design systems · Flutter first</div><h3>designku</h3></div>
+        </div>
+        <p>Nine accessible design systems with live previews. Agents never guess colors, fonts or spacing again: tokens generate Flutter themes and atoms, and a hook blocks hard-coded values.</p>
+        <div class="chips"><span class="chip new">New</span><span class="chip">9 systems</span><span class="chip">WCAG 2.2 AA</span></div>
+        <a class="more" href="#designku">Browse the systems →</a>
+      </article>
+    </div>
+    <div class="soonrow">
+      <div class="soon"><b>React Native</b> coming soon</div>
+      <div class="soon"><b>Kotlin</b> coming soon</div>
+      <div class="soon"><b>Express</b> coming soon</div>
+    </div>
+  </div>
+</section>
+
+<section class="block why">
+  <div class="wrap">
+    <div class="block__head">
+      <div><span class="eyebrow">Why these plugins</span><h2>Not just generated code.<br>Correct code.</h2></div>
+      <p>Built from real production projects, not textbook examples.</p>
+    </div>
+    <div class="why__grid">
+      <div class="why__item"><span class="n">01</span><h3>Standards-first</h3><p>Architecture patterns, naming and coding rules per platform.</p></div>
+      <div class="why__item"><span class="n">02</span><h3>Best practices built in</h3><p>Skills, agents and hooks keep enforcing them, not just scaffolding.</p></div>
+      <div class="why__item"><span class="n">03</span><h3>AI-powered review</h3><p>Reviewer agents flag architecture violations before you ship.</p></div>
+      <div class="why__item"><span class="n">04</span><h3>Quality gates</h3><p>Pre-commit checks, static analysis and formatting baked in.</p></div>
+      <div class="why__item"><span class="n">05</span><h3>Production patterns</h3><p>Structures proven on shipped apps and services.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="designku">
+  <div class="wrap">
+    <div class="block__head">
+      <div><span class="eyebrow">designku catalog</span><h2>Nine design systems.<br>Zero guessing.</h2></div>
+      <p>Each system has tokens, atoms, molecules, organisms, templates and common pages in light and dark. Open one to explore its live preview.</p>
+    </div>
+    <div class="ds" id="dsgrid"></div>
+    <div class="ds__cmds">
+      <code>/designku:ds-list</code><code>/designku:ds-use tinta</code><code>/designku:ds-customize aegis</code><code>/designku:ds-create</code>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="install" style="padding-top:24px">
+  <div class="wrap">
+    <div class="block__head">
+      <div><span class="eyebrow">Install</span><h2>Two commands.</h2></div>
+      <p>Add the marketplace once, then install any plugin. Skills run as <code>/plugin:skill</code> in Claude Code and <code>$plugin:skill</code> in Codex.</p>
+    </div>
+    <div class="install">
+      <div class="icard">
+        <h3><span class="tile sky" style="width:36px;height:36px;border-radius:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m4 17 6-5-6-5M12 19h8"/></svg></span>Claude Code</h3>
+        <div class="step"><small>1 · Add marketplace (one time)</small><div class="cmd"><code>/plugin marketplace add ghozimahdi/gm-aiagent-plugins</code><button class="copy" type="button">Copy</button></div></div>
+        <div class="step"><small>2 · Install a plugin</small><div class="cmd"><code>/plugin install ufil@gm-aiagent-plugins</code><button class="copy" type="button">Copy</button></div></div>
+      </div>
+      <div class="icard">
+        <h3><span class="tile lav" style="width:36px;height:36px;border-radius:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m4 17 6-5-6-5M12 19h8"/></svg></span>Codex</h3>
+        <div class="step"><small>1 · Add marketplace (one time)</small><div class="cmd"><code>codex plugin marketplace add ghozimahdi/gm-aiagent-plugins</code><button class="copy" type="button">Copy</button></div></div>
+        <div class="step"><small>2 · Install a plugin</small><div class="cmd"><code>codex plugin add ufil@gm-aiagent-plugins</code><button class="copy" type="button">Copy</button></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block support" id="support">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Support us</span>
+      <h2 style="margin-top:14px">Keep the plugins growing.</h2>
+      <p class="lead" style="margin-top:14px">This project is maintained by an independent developer. Your support helps to:</p>
+      <ul><li>Add new plugins and features</li><li>Fix bugs faster</li><li>Improve documentation</li></ul>
+      <div class="ctas">
+        <a class="btn btn--primary" href="https://github.com/sponsors/ghozimahdi">♥ GitHub Sponsors</a>
+        <a class="btn btn--ghost" href="https://ko-fi.com/ghozimahdi">Ko-fi</a>
+      </div>
+    </div>
+    <figure class="qris" style="margin:0">
+      <img src="qris-gopay.jpg" alt="QRIS donation code (GoPay, BCA, Mandiri, BNI, BRI and other Indonesian banks)" width="903" height="1280" loading="lazy">
+      <p>QRIS · GoPay, BCA, Mandiri, BNI, BRI and more</p>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Ghozi Mahdi · MIT License</span>
+    <span><a href="https://github.com/ghozimahdi/gm-aiagent-plugins">GitHub</a><a href="https://github.com/ghozimahdi/gm-aiagent-plugins/wiki">Wiki</a><a href="https://ghozimahdi.github.io/GM_CLI/">GM CLI</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var systems = [
+    {id:"aegis",name:"Aegis",letter:"A",context:"Fintech, banking, insurance, payments",fonts:"Manrope / Public Sans",sw:["#1F54D2","#4A607C","#7D5700","#D5E3FF","#F7F9FF"]},
+    {id:"serene",name:"Serene",letter:"B",context:"Health, wellness, telemedicine, habit tracking",fonts:"Outfit / Figtree",sw:["#166A5C","#3C665D","#934A2D","#C9E9E1","#F2FBF9"]},
+    {id:"bazaar",name:"Bazaar",letter:"C",context:"E-commerce, marketplace, retail, deals",fonts:"Plus Jakarta Sans",sw:["#C53700","#904C29","#795900","#FFDBD0","#FFF8F3"]},
+    {id:"focus",name:"Focus",letter:"D",context:"Productivity, tasks, notes, SaaS",fonts:"Inter",sw:["#4E44E3","#555F71","#006A60","#DBE1FF","#F8F9FD"]},
+    {id:"sprout",name:"Sprout",letter:"E",context:"Education, kids and family, gamified habits",fonts:"Baloo 2 / Nunito",sw:["#216D00","#3F6918","#795900","#C7EDBD","#F9FAF1"]},
+    {id:"kopi",name:"Kopi",letter:"F",context:"Food and beverage, cafes, travel, lifestyle",fonts:"Fraunces / DM Sans",sw:["#835332","#775840","#885200","#F7DECD","#FFF8F0"]},
+    {id:"pulse",name:"Pulse",letter:"G",context:"Social, community, creators, entertainment",fonts:"Sora / Be Vietnam Pro",sw:["#B1008D","#953D81","#6642CF","#FFD7F0","#FFF7FC"]},
+    {id:"slate",name:"Slate",letter:"H",context:"Enterprise, B2B, admin, white-label base",fonts:"IBM Plex Sans",sw:["#29313D","#555F6D","#1557C9","#DEE3EA","#F8F9FC"]},
+    {id:"tinta",name:"Tinta",letter:"I",context:"Creator tools, video editing, indie SaaS",fonts:"Jost / Mulish",sw:["#1460ED","#465E8B","#426900","#E8F1FF","#F8F9F3"],brutal:true}
+  ];
+  var grid = document.getElementById("dsgrid");
+  grid.innerHTML = systems.map(function (s) {
+    return '<a class="dscard" href="designku/' + s.id + '/" aria-label="Open the ' + s.name + ' design system preview">' +
+      '<span class="dscard__sw">' + s.sw.map(function (c) { return '<i style="background:' + c + '"></i>'; }).join("") + '</span>' +
+      '<span class="dscard__body"><span class="dscard__row"><span class="dscard__letter" style="background:' + s.sw[0] + '">' + s.letter + '</span>' +
+      '<span class="dscard__name">' + s.name + '</span>' + (s.brutal ? '<span class="badge-brutal">BRUTAL</span>' : '') +
+      '<span class="dscard__fonts">' + s.fonts + '</span></span>' +
+      '<span class="dscard__ctx">' + s.context + '</span><span class="dscard__open">Open live preview →</span></span></a>';
+  }).join("");
+
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = btn.parentNode.querySelector("code").textContent;
+      var done = function () { btn.textContent = "Copied"; btn.classList.add("done"); setTimeout(function () { btn.textContent = "Copy"; btn.classList.remove("done"); }, 1600); };
+      if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, done); } else { done(); }
+    });
+  });
+
+  var root = document.documentElement;
+  var forced = new URLSearchParams(location.search).get("theme");
+  try { var saved = forced || localStorage.getItem("gm-theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  document.getElementById("theme").addEventListener("click", function () {
+    var dark = root.getAttribute("data-theme") ? root.getAttribute("data-theme") === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    var next = dark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("gm-theme", next); } catch (e) {}
+  });
+  document.getElementById("yr").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
